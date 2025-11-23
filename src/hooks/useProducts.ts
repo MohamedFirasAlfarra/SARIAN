@@ -39,9 +39,21 @@ export const useCreateProduct = () => {
   
   return useMutation({
     mutationFn: async (product: Omit<Product, 'id' | 'created_at' | 'updated_at'>) => {
+
+      // ⬇ ضروري جداً
+      const { data: authUser } = await supabase.auth.getUser();
+      const userId = authUser?.user?.id;
+
+      if (!userId) throw new Error("Not authenticated");
+
+      const productData = {
+        ...product,
+        seller_id: userId, // ⬅ الأدمن فقط
+      };
+
       const { data, error } = await supabase
         .from('products')
-        .insert([product])
+        .insert([productData])
         .select()
         .single();
       
@@ -53,6 +65,7 @@ export const useCreateProduct = () => {
     },
   });
 };
+
 
 export const useUpdateProduct = () => {
   const queryClient = useQueryClient();

@@ -18,7 +18,7 @@ CREATE TABLE products (
   description_ar TEXT NOT NULL,
   price NUMERIC NOT NULL,
   image_url TEXT NOT NULL,
-  seller_id UUID NOT NULL,
+  seller_id TEXT NOT NULL, -- Changed to TEXT to match 'admin-user-id'
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -64,7 +64,7 @@ CREATE INDEX idx_cart_product_id ON cart(product_id);
 ```sql
 CREATE TABLE favorites (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  user_id TEXT NOT NULL, -- Changed to TEXT to match 'admin-user-id' or user.id
   product_id UUID NOT NULL REFERENCES products(id) ON DELETE CASCADE,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   UNIQUE(user_id, product_id)
@@ -73,10 +73,10 @@ CREATE TABLE favorites (
 -- Enable Row Level Security
 ALTER TABLE favorites ENABLE ROW LEVEL SECURITY;
 
--- Policies
-CREATE POLICY "Users can view own favorites" ON favorites FOR SELECT USING (auth.uid() = user_id);
-CREATE POLICY "Users can add to favorites" ON favorites FOR INSERT WITH CHECK (auth.uid() = user_id);
-CREATE POLICY "Users can remove from favorites" ON favorites FOR DELETE USING (auth.uid() = user_id);
+-- Policies (Allow anyone to manage favorites for demo purposes)
+CREATE POLICY "Anyone can view favorites" ON favorites FOR SELECT USING (true);
+CREATE POLICY "Anyone can add to favorites" ON favorites FOR INSERT WITH CHECK (true);
+CREATE POLICY "Anyone can remove from favorites" ON favorites FOR DELETE USING (true);
 
 -- Index for better performance
 CREATE INDEX idx_favorites_user_id ON favorites(user_id);
@@ -95,7 +95,10 @@ INSERT INTO products (name, name_ar, category, category_ar, type, type_ar, quant
 ('Honey Mustard Chicken', 'دجاج بالعسل والخردل', 'Oven Baked', 'دجاج بالفرن', 'Chicken Breast', 'صدور دجاج', 4, 'Chicken Breast, Honey, Dijon Mustard, Garlic, Olive Oil, Thyme', 'صدور دجاج، عسل، خردل ديجون، ثوم، زيت زيتون، زعتر', 'Sweet and savory chicken breast with honey mustard glaze.', 'صدور دجاج حلوة ولذيذة مع صلصة العسل والخردل.', 60, 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=800&h=600&fit=crop', 'admin-user-id'),
 ('Teriyaki Chicken', 'دجاج تيرياكي', 'Oven Baked', 'دجاج بالفرن', 'Chicken Thighs', 'أفخاذ دجاج', 4, 'Chicken Thighs, Teriyaki Sauce, Ginger, Garlic, Sesame Seeds, Green Onions', 'أفخاذ دجاج، صلصة تيرياكي، زنجبيل، ثوم، سمسم، بصل أخضر', 'Asian-inspired teriyaki chicken with a sweet and savory glaze.', 'دجاج تيرياكي بنكهة آسيوية مع صلصة حلوة ولذيذة.', 65, 'https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=800&h=600&fit=crop', 'admin-user-id'),
 ('Cajun Spiced Chicken', 'دجاج بالتوابل الكاجون', 'Oven Roasted', 'دجاج بالفرن', 'Chicken Breast', 'صدور دجاج', 3, 'Chicken Breast, Cajun Spices, Paprika, Cayenne Pepper, Garlic Powder, Onion Powder', 'صدور دجاج، توابل كاجون، بابريكا، فلفل حار، بودرة ثوم، بودرة بصل', 'Bold and spicy Cajun-seasoned chicken breast with a kick.', 'صدور دجاج متبلة بتوابل الكاجون الجريئة والحارة.', 58, 'https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=800&h=600&fit=crop', 'admin-user-id'),
-('Mediterranean Chicken', 'دجاج متوسطي', 'Oven Roasted', 'دجاج بالفرن', 'Whole Chicken', 'دجاج كامل', 1, 'Chicken, Olive Oil, Oregano, Basil, Sun-dried Tomatoes, Olives, Feta Cheese', 'دجاج، زيت زيتون، أوريجانو، ريحان، طماطم مجففة، زيتون، جبنة فيتا', 'Mediterranean-style chicken with herbs, olives, and sun-dried tomatoes.', 'دجاج على الطريقة المتوسطية مع الأعشاب والزيتون والطماطم المجففة.', 95, 'https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=800&h=600&fit=crop', 'admin-user-id');
+('Mediterranean Chicken', 'دجاج متوسطي', 'Oven Roasted', 'دجاج بالفرن', 'Whole Chicken', 'دجاج كامل', 1, 'Chicken, Olive Oil, Oregano, Basil, Sun-dried Tomatoes, Olives, Feta Cheese', 'دجاج، زيت زيتون، أوريجانو، ريحان، طماطم مجففة، زيتون، جبنة فيتا', 'Mediterranean-style chicken with herbs, olives, and sun-dried tomatoes.', 'دجاج على الطريقة المتوسطية مع الأعشاب والزيتون والطماطم المجففة.', 95, 'https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=800&h=600&fit=crop', 'admin-user-id'),
+('Pulled Chicken', 'دجاج مسحب', 'Oven Roasted', 'دجاج بالفرن', 'Shredded Chicken', 'دجاج مفروم', 2, 'Chicken, BBQ Sauce, Onions, Garlic, Paprika, Brown Sugar, Apple Cider Vinegar', 'دجاج، صلصة باربكيو، بصل، ثوم، بابريكا، سكر بني، خل التفاح', 'Tender pulled chicken slow-roasted to perfection with smoky BBQ flavors. Perfect for sandwiches and wraps.', 'دجاج مسحب طري مشوي ببطء بنكهة الباربكيو المدخنة. مثالي للساندويشات واللفائف.', 75, 'https://images.unsplash.com/photo-1606728035253-49e8a23146de?w=800&h=600&fit=crop', 'admin-user-id'),
+('Indian Butter Chicken', 'دجاج بالزبدة الهندي', 'Oven Baked', 'دجاج بالفرن', 'Chicken Pieces', 'قطع دجاج', 4, 'Chicken, Butter, Cream, Tomato Sauce, Garam Masala, Ginger, Garlic, Fenugreek', 'دجاج، زبدة، كريمة، صلصة طماطم، جارام ماسالا، زنجبيل، ثوم، حلبة', 'Rich and creamy Indian-style butter chicken with aromatic spices. A restaurant favorite at home.', 'دجاج بالزبدة الهندي الغني والكريمي مع التوابل العطرية. طبق مطعم مفضل في المنزل.', 95, 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=800&h=600&fit=crop', 'admin-user-id'),
+('Crispy Garlic Chicken', 'دجاج مقرمش بالثوم', 'Oven Baked', 'دجاج بالفرن', 'Chicken Wings', 'أجنحة دجاج', 10, 'Chicken Wings, Garlic, Butter, Parmesan Cheese, Italian Herbs, Breadcrumbs', 'أجنحة دجاج، ثوم، زبدة، جبنة بارميزان، أعشاب إيطالية، فتات الخبز', 'Extra crispy chicken wings coated with garlic butter and parmesan. Irresistibly crunchy and flavorful.', 'أجنحة دجاج مقرمشة جداً مغطاة بزبدة الثوم والبارميزان. مقرمشة ولذيذة بشكل لا يقاوم.', 55, 'https://images.unsplash.com/photo-1562967914-608f82629710?w=800&h=600&fit=crop', 'admin-user-id');
 ```
 
 ## معلومات حساب المسؤول

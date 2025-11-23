@@ -17,9 +17,24 @@ export const useAuthStore = create<AuthState>()(
       user: null,
       isAdmin: false,
       isGuest: false,
-      setUser: (user) => set({ user, isAdmin: user?.role === 'admin', isGuest: false }),
-      setGuestMode: (isGuest) => set({ isGuest, user: null, isAdmin: false }),
-      logout: () => set({ user: null, isAdmin: false, isGuest: false }),
+      setUser: (user) =>
+        set({
+          user,
+          isAdmin: user?.role === "admin",
+          isGuest: false
+        }),
+      setGuestMode: (isGuest) =>
+        set({
+          isGuest,
+          user: null,
+          isAdmin: false
+        }),
+      logout: () =>
+        set({
+          user: null,
+          isAdmin: false,
+          isGuest: false
+        }),
     }),
     {
       name: 'auth-storage',

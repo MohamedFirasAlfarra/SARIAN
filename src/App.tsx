@@ -15,6 +15,7 @@ import { CartPage } from './pages/CartPage';
 import { LoginPage } from './pages/LoginPage';
 import { SignupPage } from './pages/SignupPage';
 import { AdminPage } from './pages/AdminPage';
+import  DebugSession  from './pages/DebugSession';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -89,6 +90,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/admin" element={<AdminPage />} />
+            <Route path="/debugSession" element={<DebugSession />} />
           </Routes>
         </div>
       </Router>

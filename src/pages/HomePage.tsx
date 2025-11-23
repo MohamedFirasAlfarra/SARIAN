@@ -266,13 +266,13 @@ export const HomePage: React.FC = () => {
               </h3>
               <div className="flex gap-3">
                 <a href="#" className="w-10 h-10 bg-muted rounded-full flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
-                  <span className="text-lg">📘</span>
+                  <span className="text-lg">📘</span> {/* Placeholder for Facebook */}
+                </a>
+                <a href="https://www.instagram.com/aldeek_alfiddi" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-muted rounded-full flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                  <span className="text-lg">📸</span> {/* Instagram Icon */}
                 </a>
                 <a href="#" className="w-10 h-10 bg-muted rounded-full flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
-                  <span className="text-lg">📷</span>
-                </a>
-                <a href="#" className="w-10 h-10 bg-muted rounded-full flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
-                  <span className="text-lg">🐦</span>
+                  <span className="text-lg">🐦</span> {/* Placeholder for Twitter */}
                 </a>
               </div>
             </div>

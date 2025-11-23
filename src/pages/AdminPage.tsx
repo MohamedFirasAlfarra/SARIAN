@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppStore } from '../stores/useAppStore';
 import { useAuthStore } from '../stores/useAuthStore';
 import { useTranslation } from '../lib/translations';
-import { useProducts } from '../hooks/useProducts';
+import { useProducts, useCreateProduct, useUpdateProduct, useDeleteProduct } from '../hooks/useProducts';
 import { useQueryClient } from '@tanstack/react-query';
 import { Product } from '../types';
 import { Button } from '../components/ui/button';
@@ -21,17 +21,25 @@ export const AdminPage: React.FC = () => {
   const { language } = useAppStore();
   const { isAdmin, user } = useAuthStore();
   const t = useTranslation(language);
+
+  // 🟢 React Query
   const queryClient = useQueryClient();
   const { data: products, isLoading } = useProducts();
+
+  // 🟢 أهم 3 Hooks — لازم يكونوا هون
+  const createProduct = useCreateProduct();
+  const updateProduct = useUpdateProduct();
+  const deleteProduct = useDeleteProduct();
 
   const [showProductForm, setShowProductForm] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [toast, setToast] = useState<{ open: boolean; title: string; variant: 'success' | 'error' }>({
+
+  const [toast, setToast] = useState({
     open: false,
     title: '',
-    variant: 'success',
+    variant: 'success' as 'success' | 'error',
   });
 
   const [formData, setFormData] = useState({
@@ -49,15 +57,12 @@ export const AdminPage: React.FC = () => {
     price: 0,
     image_url: '',
   });
-  
+
   const [imageFile, setImageFile] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState<string>('');
+  const [imagePreview, setImagePreview] = useState('');
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-    if (!isAdmin) {
-      navigate('/');
-    }
+    if (!isAdmin) navigate('/');
   }, [isAdmin, navigate]);
 
   const resetForm = () => {
@@ -76,57 +81,47 @@ export const AdminPage: React.FC = () => {
       price: 0,
       image_url: '',
     });
-    setImageFile(null);
     setImagePreview('');
+    setImageFile(null);
     setEditingProduct(null);
     setShowProductForm(false);
   };
-  
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+  const handleImageChange = (e: any) => {
     const file = e.target.files?.[0];
-    if (file) {
-      setImageFile(file);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result as string);
-        setFormData({ ...formData, image_url: reader.result as string });
-      };
-      reader.readAsDataURL(file);
-    }
+    if (!file) return;
+
+    setImageFile(file);
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImagePreview(reader.result as string);
+      setFormData((d) => ({ ...d, image_url: reader.result as string }));
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
+      setLoading(true);
+
       if (editingProduct) {
-        await updateProduct.mutateAsync({
-          id: editingProduct.id,
-          ...formData,
-        });
-        setToast({
-          open: true,
-          title: t('productUpdated'),
-          variant: 'success',
-        });
+        await updateProduct.mutateAsync({ id: editingProduct.id, ...formData });
+        setToast({ open: true, title: t('productUpdated'), variant: 'success' });
       } else {
         await createProduct.mutateAsync({
           ...formData,
-          seller_id: user?.id || '',
+          seller_id: ''
         });
-        setToast({
-          open: true,
-          title: t('productAdded'),
-          variant: 'success',
-        });
+        setToast({ open: true, title: t('productAdded'), variant: 'success' });
       }
+
       resetForm();
-    } catch (error) {
-      setToast({
-        open: true,
-        title: t('error'),
-        variant: 'error',
-      });
+    } catch (err) {
+      setToast({ open: true, title: t('error'), variant: 'error' });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -154,24 +149,14 @@ export const AdminPage: React.FC = () => {
   const handleDelete = async (id: string) => {
     try {
       await deleteProduct.mutateAsync(id);
-      setToast({
-        open: true,
-        title: t('productDeleted'),
-        variant: 'success',
-      });
+      setToast({ open: true, title: t('productDeleted'), variant: 'success' });
       setDeleteConfirm(null);
-    } catch (error) {
-      setToast({
-        open: true,
-        title: t('error'),
-        variant: 'error',
-      });
+    } catch (err) {
+      setToast({ open: true, title: t('error'), variant: 'error' });
     }
   };
 
-  if (!isAdmin) {
-    return null;
-  }
+  if (!isAdmin) return null;
 
   return (
     <div className="transition-page min-h-screen bg-background">

@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
+  import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppStore } from '../stores/useAppStore';
 import { useAuthStore } from '../stores/useAuthStore';
 import { useTranslation } from '../lib/translations';
 import { useCart, useUpdateCartQuantity, useRemoveFromCart } from '../hooks/useCart';
 import { useProducts } from '../hooks/useProducts';
-import { ShoppingCartIcon, MinusIcon, PlusIcon, TrashIcon, ArrowLeftIcon, ArrowRightIcon } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
+import { ShoppingCartIcon, MinusIcon, PlusIcon, TrashIcon, ArrowLeftIcon, ArrowRightIcon, TruckIcon } from 'lucide-react';
+import { DeliveryModal } from '../components/DeliveryModal';
 
 export const CartPage: React.FC = () => {
   const navigate = useNavigate();
@@ -19,8 +20,9 @@ export const CartPage: React.FC = () => {
   const { data: allProducts, isLoading: productsLoading } = useProducts();
   const updateQuantity = useUpdateCartQuantity();
   const removeFromCart = useRemoveFromCart();
-
   const { isGuest } = useAuthStore();
+  
+  const [showDeliveryModal, setShowDeliveryModal] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -28,6 +30,10 @@ export const CartPage: React.FC = () => {
       navigate('/login');
     }
   }, [user, isGuest, navigate]);
+  
+  const handleCheckout = () => {
+    setShowDeliveryModal(true);
+  };
 
   if (!user) {
     return null;
@@ -174,10 +180,13 @@ export const CartPage: React.FC = () => {
                 </div>
 
                 <Button
+                  onClick={handleCheckout}
                   className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-normal mb-3"
                   size="lg"
+                  disabled={cartWithProducts.length === 0}
                 >
-                  {t('checkout')}
+                  <TruckIcon className="w-4 h-4 me-2" strokeWidth={2} />
+                  {t('delivery')}
                 </Button>
                 
                 <Button
@@ -218,6 +227,13 @@ export const CartPage: React.FC = () => {
           </div>
         )}
       </div>
+      
+      <DeliveryModal
+        open={showDeliveryModal}
+        onOpenChange={setShowDeliveryModal}
+        userId={user.id}
+        cartItems={cartWithProducts}
+      />
     </div>
   );
 };

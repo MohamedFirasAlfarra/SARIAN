@@ -4,38 +4,106 @@ import { useAppStore } from '../stores/useAppStore';
 import { useAuthStore } from '../stores/useAuthStore';
 import { useTranslation } from '../lib/translations';
 import { supabase } from '../lib/supabaseClient';
-import { Button } from '../components/ui/button';
-import { Input } from '../components/ui/input';
-import { Label } from '../components/ui/label';
-import { Card } from '../components/ui/card';
 import { Toast } from '../components/Toast';
 import { UserPlusIcon, CheckCircleIcon, AlertCircleIcon, EyeIcon } from 'lucide-react';
+import { Input } from '../components/ui/input';
+import { Label } from '@radix-ui/react-label';
+import { Button } from '../components/ui/button';
+import { Card } from '../components/ui/card';
 
 export const SignupPage: React.FC = () => {
   const navigate = useNavigate();
   const { language } = useAppStore();
   const { setUser, setGuestMode } = useAuthStore();
   const t = useTranslation(language);
-  
+
   const [fullName, setFullName] = useState('');
   const [age, setAge] = useState('');
   const [phone, setPhone] = useState('');
+  const [address, setAddress] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [toast, setToast] = useState<{ open: boolean; title: string; variant: 'success' | 'error' }>({
+  const [toast, setToast] = useState({
     open: false,
     title: '',
-    variant: 'success',
+    variant: 'success' as 'success' | 'error',
   });
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  const validateEmail = (email: string) => /^[^\s@]+@gmail\.com$/.test(email);
+  const validatePhone = (phone: string) => /^\+963\d{9}$/.test(phone);
+  const validatePassword = (password: string) => password.length >= 8;
 
-  const handleGuestMode = () => {
+  const validateForm = (): boolean => {
+    const newErrors: Record<string, string> = {};
+
+    if (!fullName.trim()) newErrors.fullName = 'Full name is required';
+    if (!age || +age < 1 || +age > 120) newErrors.age = 'Valid age required';
+    if (!validatePhone(phone)) newErrors.phone = 'Invalid phone';
+    if (!address.trim()) newErrors.address = 'Address required';
+    if (!validateEmail(email)) newErrors.email = 'Only Gmail allowed';
+    if (!validatePassword(password)) newErrors.password = 'Min 8 chars';
+    if (password !== confirmPassword) newErrors.confirmPassword = 'Passwords mismatch';
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+const handleSignup = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  if (!validateForm()) return;
+
+  setLoading(true);
+
+  try {
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: { fullName, age: +age, phone, address }
+      }
+    });
+
+    if (error) throw error;
+    const user = data.user;
+    if (!user) throw new Error("Signup failed");
+    const { data: profile, error: profileError } = await supabase
+  .from("profiles")
+  .select("role")
+  .eq("id", user.id)
+  .limit(1)
+  .maybeSingle();
+
+
+    setUser({
+      id: user.id,
+      email: user.email ?? "",
+      role: profile?.role ?? "user",
+    });
+
+    setToast({
+      open: true,
+      title: t("signupSuccess"),
+      variant: "success",
+    });
+
+    setTimeout(() => navigate("/"), 800);
+
+  } catch (err) {
+    setToast({
+      open: true,
+      title: t("signupError"),
+      variant: "error",
+    });
+  } finally {
+    setLoading(false);
+  }
+};
+
+    const handleGuestMode = () => {
     setGuestMode(true);
     setToast({
       open: true,
@@ -43,109 +111,6 @@ export const SignupPage: React.FC = () => {
       variant: 'success',
     });
     setTimeout(() => navigate('/'), 1000);
-  };
-
-  const validateEmail = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@gmail\.com$/;
-    return emailRegex.test(email);
-  };
-
-  const validatePhone = (phone: string): boolean => {
-    const phoneRegex = /^09\d{8}$/;
-    return phoneRegex.test(phone);
-  };
-
-  const validatePassword = (password: string): boolean => {
-    return password.length >= 8;
-  };
-
-  const validateForm = (): boolean => {
-    const newErrors: Record<string, string> = {};
-
-    if (!fullName.trim()) {
-      newErrors.fullName = language === 'ar' ? 'الاسم الكامل مطلوب' : 'Full name is required';
-    }
-
-    if (!age || parseInt(age) < 1 || parseInt(age) > 120) {
-      newErrors.age = language === 'ar' ? 'يرجى إدخال عمر صحيح' : 'Please enter a valid age';
-    }
-
-    if (!validatePhone(phone)) {
-      newErrors.phone = language === 'ar' 
-        ? 'رقم الموبايل يجب أن يبدأ بـ 09 ويتكون من 10 أرقام'
-        : 'Phone must start with 09 and be 10 digits';
-    }
-
-    if (!validateEmail(email)) {
-      newErrors.email = language === 'ar' 
-        ? 'يجب أن يكون البريد الإلكتروني بصيغة @gmail.com'
-        : 'Email must be a valid @gmail.com address';
-    }
-
-    if (!validatePassword(password)) {
-      newErrors.password = language === 'ar' 
-        ? 'كلمة المرور يجب أن تكون 8 أحرف على الأقل'
-        : 'Password must be at least 8 characters';
-    }
-
-    if (password !== confirmPassword) {
-      newErrors.confirmPassword = language === 'ar' 
-        ? 'كلمات المرور غير متطابقة'
-        : 'Passwords do not match';
-    }
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSignup = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!validateForm()) {
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: {
-            full_name: fullName,
-            age: parseInt(age),
-            phone: phone,
-          }
-        }
-      });
-
-      if (error) throw error;
-
-      if (data.user) {
-        setUser({
-          id: data.user.id,
-          email: data.user.email || '',
-          role: 'user',
-        });
-        
-        setToast({
-          open: true,
-          title: t('signupSuccess'),
-          variant: 'success',
-        });
-        
-        setTimeout(() => navigate('/'), 1000);
-      }
-    } catch (error) {
-      setToast({
-        open: true,
-        title: t('signupError'),
-        variant: 'error',
-      });
-    } finally {
-      setLoading(false);
-    }
   };
 
   return (
@@ -218,7 +183,7 @@ export const SignupPage: React.FC = () => {
           {/* Phone */}
           <div>
             <Label htmlFor="phone" className="text-foreground mb-2 block font-medium">
-              {language === 'ar' ? 'رقم الموبايل' : 'Mobile Number'}
+              {t('mobileNumber')}
             </Label>
             <Input
               id="phone"
@@ -228,8 +193,8 @@ export const SignupPage: React.FC = () => {
                 setPhone(e.target.value);
                 setErrors({ ...errors, phone: '' });
               }}
-              placeholder="09XXXXXXXX"
-              maxLength={10}
+              placeholder="+9639XXXXXXXX"
+              maxLength={13} // +963 + 9 digits = 13
               className={`bg-background text-foreground border-border h-12 ${errors.phone ? 'border-destructive' : ''}`}
               dir="ltr"
             />
@@ -237,6 +202,30 @@ export const SignupPage: React.FC = () => {
               <p className="text-destructive text-sm mt-1 flex items-center gap-1">
                 <AlertCircleIcon className="w-4 h-4" />
                 {errors.phone}
+              </p>
+            )}
+          </div>
+
+          {/* Address */}
+          <div>
+            <Label htmlFor="address" className="text-foreground mb-2 block font-medium">
+              {t('address')}
+            </Label>
+            <Input
+              id="address"
+              type="text"
+              value={address}
+              onChange={(e) => {
+                setAddress(e.target.value);
+                setErrors({ ...errors, address: '' });
+              }}
+              placeholder={language === 'ar' ? 'أدخل عنوانك' : 'Enter your address'}
+              className={`bg-background text-foreground border-border h-12 ${errors.address ? 'border-destructive' : ''}`}
+            />
+            {errors.address && (
+              <p className="text-destructive text-sm mt-1 flex items-center gap-1">
+                <AlertCircleIcon className="w-4 h-4" />
+                {errors.address}
               </p>
             )}
           </div>
@@ -380,3 +369,7 @@ export const SignupPage: React.FC = () => {
     </div>
   );
 };
+
+
+
+

@@ -40,12 +40,17 @@ export const translations = {
     buyNow: 'اشتري الآن',
     
     // Auth
+    fullName: 'الاسم الكامل',
+    age: 'العمر',
+    mobileNumber: 'رقم الموبايل',
+    address: 'العنوان',
     email: 'البريد الإلكتروني',
     password: 'كلمة المرور',
     confirmPassword: 'تأكيد كلمة المرور',
     switchToSignup: 'ليس لديك حساب؟ سجل الآن',
     switchToLogin: 'لديك حساب؟ سجل الدخول',
     adminLogin: 'تسجيل دخول المسؤول',
+    phoneValidationSyria: 'رقم الموبايل يجب أن يبدأ بـ +963 ويتكون من 12 رقمًا',
     guestMode: 'تصفح كضيف',
     continueAsGuest: 'متابعة كضيف',
     guestModeDescription: 'استكشف الموقع بدون إنشاء حساب',
@@ -79,7 +84,7 @@ export const translations = {
     productAdded: 'تم إضافة المنتج بنجاح',
     productUpdated: 'تم تحديث المنتج بنجاح',
     productDeleted: 'تم حذف المنتج بنجاح',
-    error: 'حدث خطأ',
+    error :'حدث خطأ',
     
     // Favorites
     addToFavorites: 'إضافة للمفضلة',
@@ -98,6 +103,14 @@ export const translations = {
     checkout: 'إتمام الشراء',
     total: 'المجموع',
     continueShopping: 'متابعة التسوق',
+    delivery: 'توصيل',
+    deliveryAddress: 'العنوان',
+    deliveryLocation: 'مكان التوصيل',
+    governorate: 'المحافظة',
+    orderNotes: 'ملاحظات على الطلب',
+    confirmDelivery: 'تأكيد التوصيل',
+    deliverySuccess: 'تم تأكيد طلب التوصيل بنجاح!',
+    deliveryError: 'حدث خطأ أثناء تأكيد التوصيل',
     
     // About Page
     aboutTitle: 'من نحن',
@@ -116,7 +129,7 @@ export const translations = {
     sendMessage: 'إرسال الرسالة',
     messageSent: 'تم إرسال رسالتك بنجاح',
     phone: 'الهاتف',
-    address: 'العنوان',
+    // address: 'العنوان',
     workingHours: 'ساعات العمل',
     
     // Footer
@@ -161,12 +174,17 @@ export const translations = {
     buyNow: 'Buy Now',
     
     // Auth
+    fullName: 'Full Name',
+    age: 'Age',
+    mobileNumber: 'Mobile Number',
+    address: 'Address',
     email: 'Email',
     password: 'Password',
     confirmPassword: 'Confirm Password',
     switchToSignup: "Don't have an account? Sign up",
     switchToLogin: 'Have an account? Login',
     adminLogin: 'Admin Login',
+    phoneValidationSyria: 'Mobile number must start with +963 and be 12 digits',
     guestMode: 'Browse as Guest',
     continueAsGuest: 'Continue as Guest',
     guestModeDescription: 'Explore the site without creating an account',
@@ -219,6 +237,14 @@ export const translations = {
     checkout: 'Checkout',
     total: 'Total',
     continueShopping: 'Continue Shopping',
+    delivery: 'Delivery',
+    deliveryAddress: 'Address',
+    deliveryLocation: 'Delivery Location',
+    governorate: 'Governorate',
+    orderNotes: 'Order Notes',
+    confirmDelivery: 'Confirm Delivery',
+    deliverySuccess: 'Delivery order confirmed successfully!',
+    deliveryError: 'An error occurred while confirming delivery',
     
     // About Page
     aboutTitle: 'About Us',
@@ -237,7 +263,7 @@ export const translations = {
     sendMessage: 'Send Message',
     messageSent: 'Your message has been sent successfully',
     phone: 'Phone',
-    address: 'Address',
+    // address: 'Address',
     workingHours: 'Working Hours',
     
     // Footer

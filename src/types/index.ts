@@ -22,6 +22,10 @@ export interface User {
   id: string;
   email: string;
   role: 'user' | 'admin';
+  full_name?: string;
+  age?: number;
+  phone?: string;
+  address?: string;
 }
 
 export interface Favorite {
