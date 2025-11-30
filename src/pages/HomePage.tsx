@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAppStore } from '../stores/useAppStore';
 import { useTranslation } from '../lib/translations';
 import { useProducts } from '../hooks/useProducts';
@@ -7,7 +7,7 @@ import { HeroSlider } from '../components/HeroSlider';
 import { CardGrid } from '../components/CardGrid';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
-import { ArrowRightIcon, ArrowLeftIcon, SparklesIcon, TrendingUpIcon, CheckCircleIcon, TruckIcon, ShieldCheckIcon, HeartIcon } from 'lucide-react';
+import { ArrowRightIcon, ArrowLeftIcon, SparklesIcon, TrendingUpIcon, CheckCircleIcon, TruckIcon, ShieldCheckIcon, HeartIcon, Instagram, Facebook } from 'lucide-react';
 
 export const HomePage: React.FC = () => {
   const { language } = useAppStore();
@@ -21,6 +21,7 @@ export const HomePage: React.FC = () => {
 
   const featuredProducts = products?.slice(0, 4) || [];
   const recentProducts = products?.slice(4, 8) || [];
+  const instagramUrl = "https://www.instagram.com/aldeek_alfiddi?igsh=MTZ5MHNubzVzaDczaA%3D%3D&utm_source=qr ";
 
   return (
     <div className="transition-page">
@@ -175,48 +176,31 @@ export const HomePage: React.FC = () => {
           </div>
         </section>
       )}
-
-      {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-1 text-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">
-            {language === 'ar' ? 'جاهز للطلب؟' : 'Ready to Order?'}
-          </h2>
-          <p className="text-lg text-white/90 mb-8">
-            {language === 'ar' 
-              ? 'اطلب الآن واستمتع بأفضل منتجات الدجاج الطازجة'
-              : 'Order now and enjoy the best fresh chicken products'}
-          </p>
-          <Button
-            onClick={() => navigate('/products')}
-            size="lg"
-            className="bg-white text-primary hover:bg-white/90 font-normal text-lg px-8 py-6 shadow-xl"
-          >
-            {language === 'ar' ? 'تصفح المنتجات' : 'Browse Products'}
-            {language === 'ar' ? (
-              <ArrowLeftIcon className="w-5 h-5 ms-2" strokeWidth={2} />
-            ) : (
-              <ArrowRightIcon className="w-5 h-5 ms-2" strokeWidth={2} />
-            )}
-          </Button>
-        </div>
-      </section>
-
       {/* Footer */}
       <footer className="bg-card text-card-foreground border-t border-border py-12 px-4">
         <div className="max-w-7xl mx-auto">
+          
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            {/* About */}
-            <div>
-              <h3 className="text-lg font-semibold text-foreground mb-4">
-                {language === 'ar' ? 'عن الديك الفضي' : 'About Silver Rooster'}
-              </h3>
-              <p className="text-muted-foreground text-sm">
+                      <Link to="/" className="flex items-center gap-3 group">
+                        <img 
+                           src="src/asset/IMG_0192.JPG" 
+                          alt={t('siteName')}
+                          className="w-20 h-w-20 object-contain rounded-xl shadow-lg group-hover:shadow-xl transition-all"
+                        />
+                        <div className="hidden md:block">
+                          <h1 className="text-xl font-serif font-bold text-foreground group-hover:text-primary transition-colors">
+                            {t('siteName')}
+                          </h1>
+                          <p className="text-xs text-muted-foreground">
+                            {t('siteTagline')}
+                          </p>
+                           <p className="text-muted-foreground text-sm">
                 {language === 'ar' 
                   ? 'نحن نقدم أفضل منتجات الدجاج الطازجة من مزارع موثوقة'
                   : 'We offer the best fresh chicken products from trusted farms'}
               </p>
-            </div>
+                        </div>
+                      </Link>
 
             {/* Quick Links */}
             <div>
@@ -253,30 +237,13 @@ export const HomePage: React.FC = () => {
                 {language === 'ar' ? 'تواصل معنا' : 'Contact Us'}
               </h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>{language === 'ar' ? 'البريد:' : 'Email:'} info@silverrooster.com</li>
-                <li>{language === 'ar' ? 'الهاتف:' : 'Phone:'} +966 50 123 4567</li>
-                <li>{language === 'ar' ? 'العنوان:' : 'Address:'} {language === 'ar' ? 'الرياض، المملكة العربية السعودية' : 'Riyadh, Saudi Arabia'}</li>
+                <li>{language === 'ar' ? 'الهاتف:' : 'Phone:'}  011 2245166 </li>
+                <li>{language === 'ar' ? 'الهاتف:' : 'Phone:'} +963994539997 </li>
+                <li>{language === 'ar' ? 'العنوان:' : 'Address:'} {language === 'ar' ? 'دمشق , كفرسوسة' : 'Damascus, Kfar Souseh'}</li>
               </ul>
             </div>
 
-            {/* Social */}
-            <div>
-              <h3 className="text-lg font-semibold text-foreground mb-4">
-                {language === 'ar' ? 'تابعنا' : 'Follow Us'}
-              </h3>
-              <div className="flex gap-3">
-                <a href="#" className="w-10 h-10 bg-muted rounded-full flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
-                  <span className="text-lg">📘</span> {/* Placeholder for Facebook */}
-                </a>
-                <a href="https://www.instagram.com/aldeek_alfiddi" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-muted rounded-full flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
-                  <span className="text-lg">📸</span> {/* Instagram Icon */}
-                </a>
-                <a href="#" className="w-10 h-10 bg-muted rounded-full flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
-                  <span className="text-lg">🐦</span> {/* Placeholder for Twitter */}
-                </a>
               </div>
-            </div>
-          </div>
 
           <div className="border-t border-border pt-8 text-center">
             <p className="text-muted-foreground text-sm">

@@ -95,7 +95,7 @@ export const useDeleteProduct = () => {
     mutationFn: async (id: string) => {
       const { error } = await supabase
         .from('products')
-        .delete()
+       .update({ is_deleted: true })
         .eq('id', id);
       
       if (error) throw error;

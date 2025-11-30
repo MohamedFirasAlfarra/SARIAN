@@ -4,14 +4,14 @@ export const translations = {
   ar: {
     // Navigation
     home: 'الرئيسية',
-    about: 'من نحن',
+    about: "لمحة",
     products: 'المنتجات',
-    contact: 'اتصل بنا',
+    contact: 'الاتصال',
     favorites: 'المفضلة',
     login: 'تسجيل الدخول',
     signup: 'إنشاء حساب',
     logout: 'تسجيل الخروج',
-    admin: 'لوحة التحكم',
+    admin: 'اللوحة',
     
     // Branding
     siteName: 'الديك الفضي',
@@ -128,14 +128,14 @@ export const translations = {
     deliveryCost: 'تكلفة التوصيل',
     
     // About Page
-    aboutTitle: 'من نحن',
+    aboutTitle: 'لامحة',
     aboutSubtitle: 'قصتنا ورؤيتنا',
     ourStory: 'قصتنا',
     ourMission: 'مهمتنا',
     ourVision: 'رؤيتنا',
     
     // Contact Page
-    contactTitle: 'اتصل بنا',
+    contactTitle: 'اتصل',
     contactSubtitle: 'نحن هنا للمساعدة',
     yourName: 'اسمك',
     yourEmail: 'بريدك الإلكتروني',
@@ -167,14 +167,14 @@ export const translations = {
     deliveryInfo: 'معلومات التوصيل',
     
     // Footer
-    copyright: '© 2024 الديك الفضي. جميع الحقوق محفوظة.',
+    copyright: '© 2025 الديك الفضي. جميع الحقوق محفوظة.',
   },
   en: {
     // Navigation
     home: 'Home',
-    about: 'About Us',
+    about: 'About',
     products: 'Products',
-    contact: 'Contact Us',
+    contact: 'Contact',
     favorites: 'Favorites',
     login: 'Login',
     signup: 'Sign Up',
@@ -303,7 +303,7 @@ export const translations = {
     ourVision: 'Our Vision',
     
     // Contact Page
-    contactTitle: 'Contact Us',
+    contactTitle: 'Contact',
     contactSubtitle: 'We\'re Here to Help',
     yourName: 'Your Name',
     yourEmail: 'Your Email',
@@ -335,7 +335,7 @@ export const translations = {
     deliveryInfo: 'Delivery Info',
 
     // Footer
-    copyright: '© 2024 Silver Rooster. All rights reserved.',
+    copyright: '© 2025 Silver Rooster. All rights reserved.',
   },
 };
 

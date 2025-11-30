@@ -1,6 +1,6 @@
 import { Order, Product } from '../types';
 const TELEGRAM_BOT_TOKEN = "8297015172:AAH4SVFKqYieIeR0so7_U7LShGBlx6W8g7s";
-export const ADMIN_CHAT_ID = "1117780634";
+export const ADMIN_CHAT_ID = "5408904778"; 
 
 export const sendTelegramMessage = async (chatId: string, message: string) => {
   try {
@@ -27,9 +27,11 @@ export const sendTelegramMessage = async (chatId: string, message: string) => {
     return null;
   }
 };
-
-export const formatOrderMessage = (order: Order, items: { product: Product; quantity: number; price: number }[]) => {
-  const date = new Date(order.created_at).toLocaleString('en-US', {
+export const formatOrderMessage = (
+  order: Order,
+  items: { product: Product; quantity: number; price: number }[]
+) => {
+  const date = new Date(order.created_at).toLocaleString('ar-EG', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -40,25 +42,25 @@ export const formatOrderMessage = (order: Order, items: { product: Product; quan
   const itemsList = items
     .map(
       (item) =>
-        `- ${item.product.name} (${item.quantity} × ${item.price} SAR)`
+        `- ${item.product.name_ar} (${item.quantity} × ${item.price} ر.س)`
     )
     .join('\n');
 
   return `
-🧾 <b>New Order</b>
+🧾 <b>طلب جديد</b>
 -------------------------
-<b>Order ID:</b> ${order.id.slice(0, 8)}
-<b>Customer:</b> ${order.customer_name}
-<b>Phone:</b> ${order.customer_phone}
+<b>رقم الطلب:</b> ${order.id.slice(0, 8)}
+<b>العميل:</b> ${order.customer_name}
+<b>رقم الهاتف:</b> ${order.customer_phone}
 
-<b>Items:</b>
+<b>المنتجات:</b>
 ${itemsList}
 
-<b>Total:</b> ${order.total_amount} SAR
-<b>Payment:</b> Cash on delivery
-<b>Address:</b> ${order.governorate} – ${order.delivery_address}
-<b>Date:</b> ${date}
+<b>الإجمالي:</b> ${order.total_amount} ر.س
+<b>طريقة الدفع:</b> الدفع عند الاستلام
+<b>العنوان:</b> ${order.governorate} – ${order.delivery_address}
+<b>التاريخ:</b> ${date}
 -------------------------
-Thank you for your purchase!
+شكراً لطلبك ❤️
 `;
 };

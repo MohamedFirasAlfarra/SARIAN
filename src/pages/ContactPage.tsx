@@ -81,13 +81,13 @@ export const ContactPage: React.FC = () => {
                     <h3 className="text-lg font-semibold text-foreground mb-2">
                       {t('phone')}
                     </h3>
-                    <p className="text-muted-foreground" dir="ltr">+966 50 123 4567</p>
-                    <p className="text-muted-foreground" dir="ltr">+966 50 765 4321</p>
+                    <p className="text-muted-foreground" dir="ltr"> 011 2245166 </p>
+                    <p className="text-muted-foreground" dir="ltr"> +963994539997 </p>
                   </div>
                 </div>
               </Card>
 
-              <Card className="p-6 bg-card text-card-foreground border-border">
+              {/* <Card className="p-6 bg-card text-card-foreground border-border">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-tertiary/10 rounded-full flex items-center justify-center flex-shrink-0">
                     <MailIcon className="w-6 h-6 text-tertiary" strokeWidth={2} />
@@ -100,7 +100,7 @@ export const ContactPage: React.FC = () => {
                     <p className="text-muted-foreground">support@silverrooster.com</p>
                   </div>
                 </div>
-              </Card>
+              </Card> */}
 
               <Card className="p-6 bg-card text-card-foreground border-border">
                 <div className="flex items-start gap-4">
@@ -112,18 +112,16 @@ export const ContactPage: React.FC = () => {
                       {t('address')}
                     </h3>
                     <p className="text-muted-foreground">
-                      {language === 'ar' 
-                        ? 'الرياض، حي الملقا، شارع الأمير سلطان'
-                        : 'Riyadh, Al Malqa District, Prince Sultan Street'}
+                      {language === 'ar' ? 'دمشق , كفرسوسة' : 'Damascus, Kfar Souseh'}
                     </p>
                     <p className="text-muted-foreground">
-                      {language === 'ar' ? 'المملكة العربية السعودية' : 'Saudi Arabia'}
+                      {language === 'ar' ? 'سوريا, دمشق' : 'Syria, Damascus'}
                     </p>
                   </div>
                 </div>
               </Card>
 
-              <Card className="p-6 bg-card text-card-foreground border-border">
+              {/* <Card className="p-6 bg-card text-card-foreground border-border">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
                     <ClockIcon className="w-6 h-6 text-primary" strokeWidth={2} />
@@ -142,7 +140,7 @@ export const ContactPage: React.FC = () => {
                     <p className="text-muted-foreground" dir="ltr">2:00 PM - 10:00 PM</p>
                   </div>
                 </div>
-              </Card>
+              </Card> */}
             </div>
 
             {/* Contact Form */}
@@ -229,16 +227,17 @@ export const ContactPage: React.FC = () => {
       <section className="py-20 px-4 bg-muted/30">
         <div className="max-w-7xl mx-auto">
           <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3623.9876543210!2d46.6753!3d24.7136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDQyJzQ5LjAiTiA0NsKwNDAnMzEuMSJF!5e0!3m2!1sen!2ssa!4v1234567890"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.456789012345!2d36.2885861!3d33.5016172!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1518e194c58a38cf%3A0xb0d6931a941d0c93!2z2YPZhdmE2Kkg2KrZitix2YrYryDYp9mE2YXZitix2KfZhiDYp9mE2YXYr9mK2LLZitip!5e0!3m2!1sar!2s!4v1700000000000"
+        width="100%"
+        height="100%"
+        style={{ border: 0 }}
+        allowFullScreen
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        title="موقع متجر الدجاج - ساحة كفرسوسة، دمشق"
+      />
+    </div>
         </div>
       </section>
 
