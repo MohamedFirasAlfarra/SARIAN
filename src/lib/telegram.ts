@@ -1,6 +1,6 @@
 import { Order, Product } from '../types';
 const TELEGRAM_BOT_TOKEN = "8297015172:AAH4SVFKqYieIeR0so7_U7LShGBlx6W8g7s";
-export const ADMIN_CHAT_ID = "1117780634"; 
+export const ADMIN_CHAT_ID = "5408904778"; 
 
 export const sendTelegramMessage = async (chatId: string, message: string) => {
   try {
