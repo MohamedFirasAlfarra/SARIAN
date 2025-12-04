@@ -418,33 +418,6 @@ export const HomePage: React.FC = () => {
           </div>
         </section>
       )}
-
-      {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-1 text-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">
-            {language === 'ar' ? 'جاهز للطلب؟' : 'Ready to Order?'}
-          </h2>
-          <p className="text-lg text-white/90 mb-8">
-            {language === 'ar' 
-              ? 'اطلب الآن واستمتع بأفضل منتجات الدجاج الطازجة'
-              : 'Order now and enjoy the best fresh chicken products'}
-          </p>
-          <Button
-            onClick={() => navigate('/products')}
-            size="lg"
-            className="bg-white text-primary hover:bg-white/90 font-normal text-lg px-8 py-6 shadow-xl"
-          >
-            {language === 'ar' ? 'تصفح المنتجات' : 'Browse Products'}
-            {language === 'ar' ? (
-              <ArrowLeftIcon className="w-5 h-5 ms-2" strokeWidth={2} />
-            ) : (
-              <ArrowRightIcon className="w-5 h-5 ms-2" strokeWidth={2} />
-            )}
-          </Button>
-        </div>
-      </section>
-
             <Footer />
 
     </div>
