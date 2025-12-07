@@ -378,8 +378,6 @@ export const ProductsPage: React.FC = () => {
                     )}
                   </div>
                 </div>
-
-                {/* فلتر النوع */}
                 <div>
                   <Label className="text-foreground mb-2 block">
                     {t('type')}
@@ -391,37 +389,7 @@ export const ProductsPage: React.FC = () => {
                       placeholder={language === 'ar' ? 'ابحث عن النوع...' : 'Search type...'}
                       className="bg-background text-foreground border-border"
                     />
-                    {uniqueTypes.length > 0 && (
-                      <div className="text-xs text-muted-foreground mt-1">
-                        {language === 'ar' 
-                          ? `${uniqueTypes.length} نوع متاح` 
-                          : `${uniqueTypes.length} types available`}
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* فلتر السعر */}
-                <div>
-                  <Label className="text-foreground mb-2 block">
-                    {t('priceRange')} ({language === 'ar' ? 'ليرة' : 'LBP'})
-                  </Label>
-                  <div className="space-y-4">
-                    <Slider
-                      value={priceRange}
-                      onValueChange={handlePriceChange}
-                      min={0}
-                      max={maxPrice}
-                      step={1000}
-                      className="w-full"
-                    />
-                    <div className="flex items-center justify-between text-sm text-muted-foreground">
-                      <span>0</span>
-                      <span>
-                        {priceRange[0].toLocaleString()} - {priceRange[1].toLocaleString()}
-                      </span>
-                      <span>{maxPrice.toLocaleString()}</span>
-                    </div>
+                    
                   </div>
                 </div>
 
@@ -484,7 +452,6 @@ export const ProductsPage: React.FC = () => {
               </div>
             ) : (
               <>
-                {/* شريط حالة التصفية */}
                 {(searchTerm || categoryFilter || typeFilter || priceRange[0] > 0 || priceRange[1] < maxPrice) && (
                   <div className="mb-6 p-4 bg-card border border-border rounded-lg">
                     <div className="flex items-center justify-between">
@@ -504,37 +471,8 @@ export const ProductsPage: React.FC = () => {
                     </div>
                   </div>
                 )}
-                
-                {/* عرض المنتجات */}
-                <CardGrid products={filteredProducts} />
-                
-                {/* معلومات التخزين المؤقت */}
-                <div className="mt-8 pt-6 border-t border-border">
-                  <div className="flex items-center justify-between text-sm text-muted-foreground">
-                    <div>
-                      {isLoadedFromCache ? (
-                        <span className="flex items-center gap-1 text-green-600">
-                          <CheckCircleIcon className="w-4 h-4" />
-                          {language === 'ar' 
-                            ? 'تم تحميل المنتجات من الذاكرة المؤقتة'
-                            : 'Products loaded from cache'}
-                        </span>
-                      ) : (
-                        <span>
-                          {language === 'ar' 
-                            ? 'سيتم تخزين المنتجات في الذاكرة لمدة 24 ساعة'
-                            : 'Products will be cached for 24 hours'}
-                        </span>
-                      )}
-                    </div>
-                    <button
-                      onClick={handleManualRefresh}
-                      className="text-primary hover:text-primary/80 text-sm"
-                    >
-                      {language === 'ar' ? 'تحديث يدوي' : 'Manual refresh'}
-                    </button>
-                  </div>
-                </div>
+            
+                 <CardGrid products={filteredProducts} />
               </>
             )}
           </main>
