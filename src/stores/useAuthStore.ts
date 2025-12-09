@@ -1,3 +1,4 @@
+// stores/useAuthStore.ts
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { User } from '../types';
@@ -6,12 +7,12 @@ interface AuthState {
   user: User | null;
   isAdmin: boolean;
   isGuest: boolean;
-  lastLogin: string | null;
+  lastActivity: number;
   setUser: (user: User | null) => void;
   setGuestMode: (isGuest: boolean) => void;
-  logout: () => void;
-  updateLastLogin: () => void;
-  getRedirectPath: () => string;
+  updateLastActivity: () => void;
+  logout: () => Promise<void>;
+  clear: () => void;
 }
 
 export const useAuthStore = create<AuthState>()(
@@ -20,44 +21,76 @@ export const useAuthStore = create<AuthState>()(
       user: null,
       isAdmin: false,
       isGuest: false,
-      lastLogin: null,
+      lastActivity: Date.now(),
 
       setUser: (user) =>
         set({
           user,
-          isAdmin: user?.role === "admin",
+          isAdmin: user?.role === 'admin',
           isGuest: false,
-          lastLogin: new Date().toISOString()
+          lastActivity: Date.now(),
         }),
 
       setGuestMode: (isGuest) =>
         set({
           isGuest,
           user: null,
-          isAdmin: false
+          isAdmin: false,
+          lastActivity: Date.now(),
         }),
 
-      logout: () => {
+      updateLastActivity: () =>
+        set({
+          lastActivity: Date.now(),
+        }),
+
+      logout: async () => {
+        const { supabase } = await import('../lib/supabaseClient');
+        await supabase.auth.signOut();
         set({
           user: null,
           isAdmin: false,
           isGuest: false,
-          lastLogin: null
+          lastActivity: Date.now(),
         });
-        localStorage.removeItem('auth-storage');
       },
 
-      updateLastLogin: () => {
-        set({ lastLogin: new Date().toISOString() });
-      },
-
-      getRedirectPath: () => {
-        const { isAdmin } = get();
-        return isAdmin ? '/admin/dashboard' : '/';
-      }
+      clear: () =>
+        set({
+          user: null,
+          isAdmin: false,
+          isGuest: false,
+          lastActivity: Date.now(),
+        }),
     }),
     {
       name: 'auth-storage',
+      storage: {
+        getItem: (name) => {
+          const value = localStorage.getItem(name);
+          return value ? JSON.parse(value) : null;
+        },
+        setItem: (name, value) => {
+          localStorage.setItem(name, JSON.stringify(value));
+        },
+        removeItem: (name) => {
+          localStorage.removeItem(name);
+        },
+      },
     }
   )
 );
+
+// دالة مساعدة للتحقق من انتهاء الجلسة
+export const checkSessionExpiry = () => {
+  const { lastActivity } = useAuthStore.getState();
+  const TWELVE_HOURS = 12 * 60 * 60 * 1000; // 12 ساعة
+  
+  if (Date.now() - lastActivity > TWELVE_HOURS) {
+    useAuthStore.getState().clear();
+    return true;
+  }
+  
+  useAuthStore.getState().updateLastActivity();
+  return false;
+};

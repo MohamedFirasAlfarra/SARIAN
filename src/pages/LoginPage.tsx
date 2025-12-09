@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { useAppStore } from '../stores/useAppStore';
 import { useAuthStore } from '../stores/useAuthStore';
 import { useTranslation } from '../lib/translations';
@@ -9,10 +9,11 @@ import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Card } from '../components/ui/card';
 import { Toast } from '../components/Toast';
-import { LogInIcon, EyeIcon } from 'lucide-react';
+import { LogInIcon, EyeIcon, Loader2 } from 'lucide-react';
 
 export const LoginPage: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { language } = useAppStore();
   const { setUser, setGuestMode } = useAuthStore();
   const t = useTranslation(language);
@@ -23,47 +24,78 @@ export const LoginPage: React.FC = () => {
   const [toast, setToast] = useState({
     open: false,
     title: '',
+    description: '',
     variant: 'success' as 'success' | 'error',
   });
+
+  // تحقق إذا كان المستخدم مسجل دخول بالفعل
+  useEffect(() => {
+    const checkSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        navigate('/');
+      }
+    };
+    checkSession();
+  }, [navigate]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      const { data, error } = await supabase.auth.signInWithPassword({ 
+        email, 
+        password 
+      });
 
       if (error) throw error;
 
-      const user = data.user;
-      if (!user) throw new Error("User not found");
+      if (!data.user) {
+        throw new Error('لم يتم العثور على المستخدم');
+      }
 
+      // جلب بيانات الملف الشخصي
       const { data: profile } = await supabase
-        .from("profiles")
-        .select("role")
-        .eq("id", user.id)
+        .from('profiles')
+        .select('role')
+        .eq('id', data.user.id)
         .single();
 
-      const role = profile?.role ?? "user";
+      const role = profile?.role || 'user';
 
+      // تحديث حالة المستخدم
       setUser({
-        id: user.id,
-        email: user.email ?? "",
+        id: data.user.id,
+        email: data.user.email || '',
         role,
       });
 
-      setToast({ open: true, title: t('loginSuccess'), variant: 'success' });
+      setToast({ 
+        open: true, 
+        title: language === 'ar' ? 'تم تسجيل الدخول بنجاح' : 'Login Successful',
+        description: language === 'ar' ? 'مرحباً بعودتك!' : 'Welcome back!',
+        variant: 'success' 
+      });
 
+      // الانتقال للصفحة المناسبة
       setTimeout(() => {
-        if (role === "admin") {
+        if (role === 'admin') {
           navigate('/admin');
         } else {
-          navigate('/');
+          const from = location.state?.from || '/';
+          navigate(from);
         }
-      }, 800);
+      }, 1000);
 
-    } catch (_) {
-      setToast({ open: true, title: t('loginError'), variant: 'error' });
+    } catch (error: any) {
+      console.error('Login error:', error);
+      setToast({ 
+        open: true, 
+        title: language === 'ar' ? 'خطأ في تسجيل الدخول' : 'Login Error',
+        description: error.message || (language === 'ar' ? 'بيانات الدخول غير صحيحة' : 'Invalid login credentials'),
+        variant: 'error' 
+      });
     } finally {
       setLoading(false);
     }
@@ -74,15 +106,15 @@ export const LoginPage: React.FC = () => {
     setToast({
       open: true,
       title: language === 'ar' ? 'مرحباً بك كضيف!' : 'Welcome as Guest!',
+      description: language === 'ar' ? 'يمكنك تصفح المنتجات وإضافتها للسلة' : 'You can browse products and add to cart',
       variant: 'success',
     });
-    setTimeout(() => navigate('/'), 1000);
+    setTimeout(() => navigate('/'), 800);
   };
 
   return (
     <div className="transition-page min-h-screen bg-gradient-to-br from-background via-muted/20 to-background flex items-center justify-center px-4 py-12">
       <Card className="w-full max-w-md p-8 md:p-10 bg-card/95 backdrop-blur-sm text-card-foreground border-border shadow-2xl">
-
         <div className="flex justify-center mb-6">
           <div className="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center shadow-lg">
             <LogInIcon className="w-10 h-10 text-white" strokeWidth={2} />
@@ -107,6 +139,8 @@ export const LoginPage: React.FC = () => {
               required
               placeholder="example@gmail.com"
               dir="ltr"
+              className="mt-1"
+              disabled={loading}
             />
           </div>
 
@@ -119,11 +153,27 @@ export const LoginPage: React.FC = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
               placeholder="••••••••"
+              className="mt-1"
+              disabled={loading}
             />
           </div>
 
-          <Button type="submit" disabled={loading} className="w-full h-12">
-            {loading ? (language === 'ar' ? 'جاري التحميل...' : 'Loading...') : t('login')}
+          <Button 
+            type="submit" 
+            disabled={loading} 
+            className="w-full h-12"
+          >
+            {loading ? (
+              <>
+                <Loader2 className="w-5 h-5 me-2 animate-spin" />
+                {language === 'ar' ? 'جاري تسجيل الدخول...' : 'Logging in...'}
+              </>
+            ) : (
+              <>
+                <LogInIcon className="w-5 h-5 me-2" />
+                {t('login')}
+              </>
+            )}
           </Button>
         </form>
 
@@ -132,11 +182,13 @@ export const LoginPage: React.FC = () => {
             onClick={handleGuestMode}
             variant="outline"
             className="w-full h-12"
+            disabled={loading}
           >
-            <EyeIcon className="w-5 h-5 me-2" /> {t('continueAsGuest')}
+            <EyeIcon className="w-5 h-5 me-2" /> 
+            {t('continueAsGuest')}
           </Button>
 
-          <div className="text-center pt-4">
+          <div className="text-center pt-4 border-t border-border">
             <p className="text-muted-foreground mb-2">
               {language === 'ar' ? 'ليس لديك حساب؟' : "Don't have an account?"}
             </p>
@@ -154,6 +206,7 @@ export const LoginPage: React.FC = () => {
         open={toast.open}
         onOpenChange={(open) => setToast({ ...toast, open })}
         title={toast.title}
+        description={toast.description}
         variant={toast.variant}
       />
     </div>
