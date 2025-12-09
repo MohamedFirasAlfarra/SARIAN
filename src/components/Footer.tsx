@@ -181,17 +181,7 @@ const Footer: React.FC = () => {
           ))}
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-border pt-8">
-          <div className="flex items-center justify-center gap-2 mt-6 text-muted-foreground text-sm">
-            <HeartIcon className="w-4 h-4 text-red-500 fill-red-500 animate-pulse" />
-            <span>
-              {language === 'ar' 
-                ? 'صنع بكل حب في سوريا 🇸🇾'
-                : 'Made with love in Syria 🇸🇾'}
-            </span>
-          </div>
-        </div>
+       
       </div>
 
       {/* Back to Top Button */}
