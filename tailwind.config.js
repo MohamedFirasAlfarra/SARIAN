@@ -1,8 +1,8 @@
 module.exports = {
-  darkMode: ["class"],
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{html,js,ts,jsx,tsx}",
+    "app/**/*.{ts,tsx}",
+    "components/**/*.{ts,tsx}",
   ],
   theme: {
     extend: {
@@ -20,25 +20,9 @@ module.exports = {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },
-        tertiary: {
-          DEFAULT: "hsl(var(--tertiary))",
-          foreground: "hsl(var(--tertiary-foreground))",
-        },
-        neutral: {
-          DEFAULT: "hsl(var(--neutral))",
-          foreground: "hsl(var(--neutral-foreground))",
-        },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
-        },
-        success: {
-          DEFAULT: "hsl(var(--success))",
-          foreground: "hsl(var(--success-foreground))",
-        },
-        warning: {
-          DEFAULT: "hsl(var(--warning))",
-          foreground: "hsl(var(--warning-foreground))",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",
@@ -48,49 +32,59 @@ module.exports = {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        gray: {
-          50: "hsl(45, 20%, 98%)",
-          100: "hsl(45, 12%, 94%)",
-          200: "hsl(45, 8%, 85%)",
-          300: "hsl(45, 7%, 75%)",
-          400: "hsl(45, 5%, 60%)",
-          500: "hsl(45, 4%, 50%)",
-          600: "hsl(45, 5%, 40%)",
-          700: "hsl(45, 6%, 30%)",
-          800: "hsl(45, 7%, 20%)",
-          900: "hsl(45, 8%, 12%)",
-        },
-      },
-      fontFamily: {
-        sans: ['"Nunito Sans"', 'sans-serif'],
-        serif: ['Raleway', 'sans-serif'],
-        mono: ['"IBM Plex Mono"', 'monospace'],
       },
       borderRadius: {
-        lg: "12px",
-        md: "10px",
-        sm: "8px",
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
-      spacing: {
-        '4': '1rem',
-        '8': '2rem',
-        '12': '3rem',
-        '16': '4rem',
-        '24': '6rem',
-        '32': '8rem',
-        '48': '12rem',
-        '64': '16rem',
+      fontFamily: {
+        sans: [
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
+          '"Apple Color Emoji"',
+          '"Segoe UI Emoji"',
+          '"Segoe UI Symbol"',
+          '"Noto Color Emoji"',
+        ],
       },
-      backgroundImage: {
-        'gradient-1': 'linear-gradient(135deg, hsl(0, 0%, 40%), hsl(0, 0%, 70%))',
-        'gradient-2': 'linear-gradient(135deg, hsl(0, 0%, 50%), hsl(0, 0%, 80%))',
-        'button-border-gradient': 'linear-gradient(90deg, hsl(0, 0%, 40%), hsl(0, 0%, 60%))',
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        "float": {
+          "0%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+          "100%": { transform: "translateY(0)" },
+        },
+        "bounce-slow": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-15px)" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        "float": "float 3s ease-in-out infinite",
+        "bounce-slow": "bounce-slow 4s ease-in-out infinite",
       },
     },
+    container: { center: true, padding: "2rem", screens: { "2xl": "1400px" } },
   },
   plugins: [],
-}
+  darkMode: ["class"],
+};
