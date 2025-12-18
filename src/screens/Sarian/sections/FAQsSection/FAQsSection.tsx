@@ -85,7 +85,7 @@ export const FAQsSection = (): JSX.Element => {
                     <span className={`[font-family:'Inter',Helvetica] font-normal text-black text-lg md:text-3xl tracking-[0] leading-normal whitespace-normal w-full ${language === 'ar' ? 'text-right' : 'text-left'}`}>
                       {item.question}
                     </span>
-                    <ChevronDownIcon className="w-8 h-8 md:w-[49px] md:h-[49px] shrink-0 transition-transform duration-200 text-gray-500" />
+                    {/* <ChevronDownIcon className="w-8 h-8 md:w-[49px] md:h-[49px] shrink-0 transition-transform duration-200 text-gray-500" /> */}
                   </div>
                 </AccordionTrigger>
                 <AccordionContent className={`px-4 md:px-8 pb-4 md:pb-8 text-base md:text-xl ${language === 'ar' ? 'text-right' : 'text-left'}`}>
