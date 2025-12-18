@@ -26,7 +26,7 @@ export const FeaturedItemsSection = (): JSX.Element => {
   ];
 
   return (
-    <section className="relative w-full flex justify-center py-20 overflow-hidden">
+    <section className="relative w-full flex justify-center overflow-hidden py-52 mb-10">
       <img
         className="absolute top-0 left-0 w-full h-full object-cover pointer-events-none z-0"
         alt="Background"

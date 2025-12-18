@@ -22,7 +22,7 @@ export const Navbar = (): JSX.Element => {
                 {/* Logo Section (Start) */}
                 <div className="flex items-center">
                     <img
-                        className="h-10 lg:h-14 w-auto object-contain"
+                        className="h-14 lg:h-14 w-auto object-contain"
                         alt="Sarian Logo"
                         src="https://c.animaapp.com/mj5q34e29K0n2Q/img/logo-sarian2-1.png"
                     />

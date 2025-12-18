@@ -13,13 +13,11 @@ export const HeroSection = (): JSX.Element => {
       <MobileAppBanner />
       <Navbar />
 
-      {/* Hero Content - Order: Text, Image (Standard flow flips in RTL) */}
       <div className="container mx-auto px-4 md:px-8 lg:px-16 mt-32 lg:mt-32 flex flex-col lg:flex-row items-center justify-between gap-4 lg:gap-8 max-w-[1440px]">
-
-        {/* Text Side (First in DOM -> Left in LTR / Right in RTL) */}
-        <div className={`w-full lg:w-1/2 flex flex-col ${language === 'ar' ? 'lg:items-start text-right' : 'lg:items-end text-left'} gap-6 z-10 animate-fade-in opacity-0 [--animation-delay:200ms]`}>
-          {/* Note: 'text-right' aligns text inside the block to the right, 'items-start' aligns the block itself to start (Right in RTL). */}
-          <h1 className="font-bold text-[#0d1b42] text-5xl lg:text-[70px] leading-tight mb-2 
+        <div className={`w-full lg:w-1/2 flex flex-col ${language === 'ar' ? 'lg:items-start text-right' : 'lg:items-end text-left'} 
+        gap-6 z-10 animate-fade-in opacity-0 [--animation-delay:200ms]`}>
+          <h1 className="font-bold text-[#0d1b42] text-5xl 
+          lg:text-[70px] leading-tight mb-2  text-center
           [font-family:'Inter',Helvetica]">
             SARIAN
           </h1>
@@ -31,23 +29,19 @@ export const HeroSection = (): JSX.Element => {
             {t('hero.description1')} {t('hero.description2')}
           </p>
 
-          <div className="flex items-center gap-4 mt-8">
-            <a
-              href="#"
+          {/* <div className="flex items-center gap-4 mt-8">
+            <a href="#"
               className="w-[160px] h-[58px] rounded-[10px] flex items-center justify-center hover:scale-105 transition-transform"
-              aria-label="Download on App Store"
-            >
+              aria-label="Download on App Store">
+
               <img src="https://c.animaapp.com/mj5q34e29K0n2Q/img/frame-3-1.png" alt="App Store" className="w-full h-full object-contain" />
             </a>
-
-            <a
-              href="#"
+            <a href="#"
               className="w-[160px] h-[58px] rounded-[10px] flex items-center justify-center hover:scale-105 transition-transform"
-              aria-label="Get it on Google Play"
-            >
+              aria-label="Get it on Google Play">
               <img src="https://c.animaapp.com/mj5q34e29K0n2Q/img/frame-4-1.png" alt="Google Play" className="w-full h-full object-contain" />
             </a>
-          </div>
+          </div> */}
         </div>
 
         <div className="w-full lg:w-1/2 flex justify-center lg:justify-end relative 
@@ -60,7 +54,6 @@ export const HeroSection = (): JSX.Element => {
             />
           </div>
         </div>
-
       </div>
     </section>
   );
