@@ -25,11 +25,12 @@ export const ServicesOverviewSection = (): JSX.Element => {
         </div>
 
         <div className="w-full max-w-[543px] translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:400ms]">
-          <img
-            className="w-full h-auto object-cover rounded-lg"
-            alt="Google map showing service coverage"
-            src="public\map.png"
-          />
+        <img
+  className="w-full h-auto object-cover rounded-lg"
+  alt="Google map showing service coverage"
+  src="/map.png"
+/>
+
         </div>
       </div>
     </section>
