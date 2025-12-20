@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { useLanguage } from "../../../../contexts/LanguageContext";
+import { Truck,  Building2} from "lucide-react";
 
 export const FeaturedItemsSection = (): JSX.Element => {
   const { t, language } = useLanguage();
@@ -10,7 +11,7 @@ export const FeaturedItemsSection = (): JSX.Element => {
     {
       id: "delivery",
       illustration: "https://c.animaapp.com/mj5q34e29K0n2Q/img/frame-10.svg",
-      icon: "https://c.animaapp.com/mj5q34e29K0n2Q/img/icon.svg",
+      icon: <Truck className="w-12 h-12 md:w-16 md:h-16" />,
       title: t('featured.driver.title'),
       description: t('featured.driver.desc'),
       buttonText: t('featured.driver.btn'),
@@ -18,7 +19,7 @@ export const FeaturedItemsSection = (): JSX.Element => {
     {
       id: "partner",
       illustration: "https://c.animaapp.com/mj5q34e29K0n2Q/img/frame-11.svg",
-      icon: "https://c.animaapp.com/mj5q34e29K0n2Q/img/building-retail---undefined---glyph--undefined-1.svg",
+      icon: <Building2 className="w-12 h-12 md:w-16 md:h-16" />,
       title: t('featured.partner.title'),
       description: t('featured.partner.desc'),
       buttonText: t('featured.partner.btn'),
@@ -78,11 +79,9 @@ export const FeaturedItemsSection = (): JSX.Element => {
                     </span>
                   </Button>
 
-                  <img
-                    className="absolute top-[58px] left-1/2 -translate-x-1/2 w-auto h-auto"
-                    alt="Icon"
-                    src={card.icon}
-                  />
+                  <div className="absolute top-[58px] left-1/2 -translate-x-1/2">
+                    {card.icon}
+                  </div>
                 </CardContent>
               </Card>
             ))}
