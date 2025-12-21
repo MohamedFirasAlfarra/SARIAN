@@ -82,7 +82,7 @@ export const FAQsSection = (): JSX.Element => {
               >
                 <AccordionTrigger className={`flex items-center justify-between px-4 md:px-8 py-4 md:py-8 hover:no-underline [&[data-state=open]>svg]:rotate-180 ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
                   <div className={`flex items-center gap-4 md:gap-[33px] w-full ${language === 'ar' ? 'flex-row' : 'flex-row-reverse'}`}>
-                    <span className={`[font-family:'Inter',Helvetica] font-normal text-black text-lg md:text-3xl tracking-[0] leading-normal whitespace-normal w-full ${language === 'ar' ? 'text-right' : 'text-left'}`}>
+                    <span className={`[font-family: Georgia, 'Times New Roman', Times, serif] font-normal text-black text-lg md:text-2xl tracking-[0] leading-normal whitespace-normal w-full ${language === 'ar' ? 'text-right' : 'text-left'}`}>
                       {item.question}
                     </span>
                     {/* <ChevronDownIcon className="w-8 h-8 md:w-[49px] md:h-[49px] shrink-0 transition-transform duration-200 text-gray-500" /> */}

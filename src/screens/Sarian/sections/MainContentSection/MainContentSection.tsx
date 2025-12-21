@@ -49,8 +49,8 @@ export const MainContentSection = (): JSX.Element => {
     <section className="w-full py-16 px-4 md:px-8 lg:px-16">
       <div className="max-w-[1440px] mx-auto">
         <header className="flex items-center justify-center mb-16 translate-y-[-1rem] animate-fade-in opacity-0">
-          <h2 className={`font-bold text-black text-[40px] md:text-[50px] text-center
-             [font-family:'Inter',Helvetica] tracking-[0] leading-normal
+          <h2 className={`font-bold text-black text-[40px] md:text-[30px] text-center
+             [font-family: Georgia, 'Times New Roman', Times, serif] tracking-[0] leading-normal
               ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
             {t('services.title')}
           </h2>
@@ -79,18 +79,18 @@ export const MainContentSection = (): JSX.Element => {
                 </div>
 
                 <div className="flex flex-col items-center gap-4 w-full flex-grow">
-                  <h3 className={`font-semibold text-black text-2xl sm:text-2xl md:text-3xl lg:text-[40px] text-center whitespace-normal [font-family:'Inter',Helvetica] tracking-[0] leading-normal ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
+                  <h3 className={`font-semibold text-black text-2xl sm:text-2xl md:text-3xl lg:text-[40px] text-center whitespace-normal [font-family: Georgia, 'Times New Roman', Times, serif] tracking-[0] leading-normal ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
                     {service.title}
                   </h3>
 
-                  <p className={`font-light text-black text-base sm:text-base md:text-lg md:text-xl lg:text-[25px] text-center [font-family:'Inter',Helvetica] tracking-[0] leading-normal ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
+                  <p className={`font-light text-black text-base sm:text-base md:text-lg md:text-xl lg:text-[25px] text-center [font-family: Georgia, 'Times New Roman', Times, serif] tracking-[0] leading-normal ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
                     {service.description}
                   </p>
                 </div>
 
                 <div className="w-full flex justify-center pt-4">
                   <Button className="w-full max-w-[200px] md:max-w-[250px] h-auto px-6 py-3 bg-[#ffd400] hover:bg-[#ffd400]/90 rounded-[10px] shadow-[4px_4px_20px_2px_#00000040] transition-transform hover:scale-105">
-                    <span className={`font-semibold text-white text-xl md:text-2xl text-center whitespace-nowrap [font-family:'Inter',Helvetica] tracking-[0] leading-normal ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
+                    <span className={`font-semibold text-white text-xl md:text-2xl text-center whitespace-nowrap [font-family: Georgia, 'Times New Roman', Times, serif] tracking-[0] leading-normal ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
                       {service.buttonText}
                     </span>
                   </Button>

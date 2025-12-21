@@ -71,7 +71,7 @@ export const FooterSection = (): JSX.Element => {
                 alt="Ellipse"
                 src="https://c.animaapp.com/mj5q34e29K0n2Q/img/ellipse-1.png"
               />
-              <span className={`[font-family:'Inter',Helvetica] font-normal text-white text-xl ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
+              <span className={`[font-family: Georgia, 'Times New Roman', Times, serif] font-normal text-white text-xl ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
                 {language === 'ar' ? 'English' : 'العربية'}
               </span>
             </Button>

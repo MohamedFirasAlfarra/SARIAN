@@ -36,11 +36,11 @@ export const FeaturedItemsSection = (): JSX.Element => {
       <div className="relative w-full max-w-[1436px] z-10">
         <div className="relative flex flex-col items-center gap-8 px-4 pt-32 pb-20">
           <header className={`flex flex-col items-center gap-8 max-w-[918px] translate-y-[-1rem] animate-fade-in opacity-0 ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
-            <h2 className="font-bold text-black text-[50px] text-center [font-family:'Inter',Helvetica] tracking-[0] leading-normal px-2.5 py-2.5">
+            <h2 className="font-bold text-black text-[38px] text-center [font-family: Georgia, 'Times New Roman', Times, serif] tracking-[0] leading-normal px-2.5 py-2.5">
               {t('featured.title')}
             </h2>
 
-            <p className="font-normal text-black text-3xl text-center [font-family:'Inter',Helvetica] tracking-[0] leading-normal">
+            <p className="font-normal text-black text-2xl text-center [font-family: Georgia, 'Times New Roman', Times, serif] tracking-[0] leading-normal">
               {t('featured.desc')}
             </p>
           </header>
@@ -64,17 +64,17 @@ export const FeaturedItemsSection = (): JSX.Element => {
                   />
 
                   <div className={`flex flex-col items-center gap-6 w-full max-w-[415px] ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
-                    <h3 className="font-bold text-black text-[35px] text-center [font-family:'Inter',Helvetica] tracking-[0] leading-normal">
+                    <h3 className="font-bold text-black text-[35px] text-center [font-family: Georgia, 'Times New Roman', Times, serif] tracking-[0] leading-normal">
                       {card.title}
                     </h3>
 
-                    <p className="font-normal text-black text-xl text-center [font-family:'Inter',Helvetica] tracking-[0] leading-normal">
+                    <p className="font-normal text-black text-xl text-center [font-family: Georgia, 'Times New Roman', Times, serif] tracking-[0] leading-normal">
                       {card.description}
                     </p>
                   </div>
 
                   <Button className="h-14 w-full bg-[#ffd400] hover:bg-[#ffd400]/90 rounded-[10px] px-[34px] py-[13px] transition-colors">
-                    <span className="font-semibold text-black text-[25px] text-center whitespace-nowrap [font-family:'Inter',Helvetica] tracking-[0] leading-normal">
+                    <span className="font-semibold text-black text-[20px] text-center whitespace-nowrap [font-family: Georgia, 'Times New Roman', Times, serif] tracking-[0] leading-normal">
                       {card.buttonText}
                     </span>
                   </Button>

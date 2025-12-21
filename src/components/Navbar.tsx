@@ -35,7 +35,7 @@ export const Navbar = (): JSX.Element => {
                             key={index}
                             href={link.href}
                             className={`relative text-[#0d1b42] text-base lg:text-xl font-bold 
-                                whitespace-nowrap [font-family:'Inter',Helvetica] 
+                                whitespace-nowrap [font-family: Georgia, 'Times New Roman', Times, serif] 
                                 ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'} group`}
                             {...(link.href.startsWith("http") && {
                                 rel: "noopener noreferrer",
@@ -123,7 +123,7 @@ export const Navbar = (): JSX.Element => {
                         <a
                             key={index}
                             href={link.href}
-                            className="relative text-[#0d1b42] text-2xl font-bold hover:text-[#0d1b42]/90 transition-all duration-300 whitespace-nowrap [font-family:'Inter',Helvetica] w-full border-b border-gray-100 pb-4 group"
+                            className="relative text-[#0d1b42] text-2xl font-bold hover:text-[#0d1b42]/90 transition-all duration-300 whitespace-nowrap [font-family: Georgia, 'Times New Roman', Times, serif] w-full border-b border-gray-100 pb-4 group"
                             onClick={() => setIsMobileMenuOpen(false)}
                             {...(link.href.startsWith("http") && {
                                 rel: "noopener noreferrer",

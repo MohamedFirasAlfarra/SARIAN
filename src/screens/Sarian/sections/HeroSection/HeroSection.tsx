@@ -23,14 +23,20 @@ export const HeroSection = (): JSX.Element => {
         gap-6 z-10 animate-fade-in opacity-0 [--animation-delay:200ms]`}>
           <h1 className="font-bold text-[#0d1b42] text-5xl 
           lg:text-[70px] leading-tight mb-2  text-center
-          [font-family:'Inter',Helvetica]">
+          [font-family: Georgia, 'Times New Roman', Times, serif]">
             SARIAN
           </h1>
-          <h2 className={`font-bold text-[#0d1b42] text-3xl md:text-4xl lg:text-[50px] leading-snug [font-family:'Inter',Helvetica] ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
-            {t('hero.title')} {t('hero.subtitle')}
+          <h2 className={`font-bold text-[#0d1b42] text-center text-3xl md:text-4xl lg:text-[50px] leading-snug
+             [font-family: Georgia, 'Times New Roman', Times, serif] ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
+            {t('hero.title')} 
+          </h2>
+          <h2 className={`font-bold text-[#0d1b42] text-center text-3xl md:text-4xl lg:text-[50px] leading-snug 
+            [font-family: Georgia, 'Times New Roman', Times, serif] ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
+            {t('hero.subtitle')}
           </h2>
 
-          <p className={`text-[#0d1b42] text-xl lg:text-2xl font-medium max-w-[700px] leading-relaxed [font-family:'Inter',Helvetica] ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
+          <p className={`text-[#0d1b42] text-xl text-center lg:text-2xl font-semibold max-w-[600px] leading-relaxed 
+            [font-family: Georgia, 'Times New Roman', Times, serif] ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
             {t('hero.description1')} {t('hero.description2')}
           </p>
         </div>

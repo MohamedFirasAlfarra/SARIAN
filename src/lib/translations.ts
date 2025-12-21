@@ -78,7 +78,7 @@ export const translations = {
     'faq.question': 'ما هو تطبيق Done؟',
     'faq.answer': 'محتوى الإجابة هنا',
 
-
+ 
 
     'faq.q1': 'ما هو تطبيق SARIAN?',
     'faq.q2': 'ما هي المدن التي يتوفر فيها التطبيق؟',
@@ -101,7 +101,9 @@ export const translations = {
     'faq.a8': 'نعم، يمكنك تعديل أو إلغاء طلبك خلال فترة زمنية قصيرة بعد الإرسال، وفقًا لسياسات المتجر أو المطعم.',
     'faq.a9': 'يمكنك توسيع نطاق عملك، الوصول إلى المزيد من العملاء، والاستفادة من خدمات الدفع الإلكتروني والتسويق.',
     'faq.a10': 'إذا كنت تمتلك مطعما أو متجرا، يمكنك التسجيل عبر الموقع الإلكتروني أو التطبيق، وسيقوم فريقنا بالتواصل معك لتفعيل حسابك.',
+ 
 
+    
     // Footer Landing
     'footer.cities': 'المدن',
     'footer.cities.damascus': 'دمشق',
@@ -297,18 +299,7 @@ export const translations = {
     copyright: '© 2025 الديك الفضي. جميع الحقوق محفوظة.',
   },
   en: {
-    // Navigation
-    home: 'Home',
-    about: 'About',
-    products: 'Products',
-    contact: 'Contact',
-    favorites: 'Favorites',
-    login: 'Login',
-    signup: 'Sign Up',
-    logout: 'Logout',
-    admin: 'Admin Dashboard',
-
-    // Landing Page Specific
+   
     // Navbar
     'nav.services': 'Our Services',
     'nav.cities': 'Cities We Serve',
@@ -410,165 +401,27 @@ export const translations = {
     'footer.rights': 'All Rights Reserved to SARIAN.com 2025 ©',
     'footer.language': 'English',
 
+    'faq.q1': 'What is the SARIAN app?',
+'faq.q2': 'In which cities is the app available?',
+'faq.q3': 'Are there any additional fees when using the app?',
+'faq.q4': 'What are the requirements to work as a driver?',
+'faq.q5': 'How can I download the app, especially for a new account?',
+'faq.q6': 'How does the SARIAN app work?',
+'faq.q7': 'How can I order food or make a purchase through the app?',
+'faq.q8': 'Can I modify or cancel an order after it has been sent?',
+'faq.q9': 'What benefits will I receive as a partner?',
+'faq.q10': 'How do I join as a partner (restaurant/store) with SARIAN?',
 
-    // Branding
-    siteName: 'Silver Rooster',
-    siteTagline: 'Quality & Taste',
-
-    // Home Page
-    featuredChickens: 'Featured Chickens',
-    recentlyListed: 'Recently Listed',
-    viewAll: 'View All',
-
-    // Products
-    filters: 'Filters',
-    category: 'Oven Chicken Category',
-    type: 'Type',
-    quantity: 'Quantity',
-    ingredients: 'Ingredients',
-    priceRange: 'Price Range',
-    applyFilters: 'Apply',
-    clearFilters: 'Clear',
-    noProducts: 'No products found',
-
-    // Product Details
-    price: 'Price',
-    description: 'Description',
-    contactSeller: 'Contact Seller',
-    buyNow: 'Buy Now',
-    buyWithDelivery: 'Buy with Delivery',
-    buyPickup: 'Buy & Pickup',
-
-    // Auth
-    fullName: 'Full Name',
-    age: 'Age',
-    mobileNumber: 'Mobile Number',
-    address: 'Address',
-    email: 'Email',
-    password: 'Password',
-    confirmPassword: 'Confirm Password',
-    switchToSignup: "Don't have an account? Sign up",
-    switchToLogin: 'Have an account? Login',
-    adminLogin: 'Admin Login',
-    phoneValidationSyria: 'Mobile number must start with +963 and be 12 digits',
-    guestMode: 'Browse as Guest',
-    continueAsGuest: 'Continue as Guest',
-    guestModeDescription: 'Explore the site without creating an account',
-    guestRestriction: 'Sorry, you need to login to continue',
-    guestRestrictionMessage: 'This feature is only available for registered users. Please login or create a new account to enjoy all features.',
-    loginNow: 'Login Now',
-    createAccount: 'Create Account',
-    linkTelegram: 'Link Telegram Account',
-    telegramLinked: 'Telegram account linked successfully',
-    telegramLinkDesc: 'Get instant notifications about your orders via Telegram',
-    enterChatId: 'Enter your Chat ID',
-    howToGetChatId: 'How to get Chat ID?',
-    chatIdInstructions: '1. Search for @SilverRoosterbot on Telegram\n2. Press Start\n3. Send /id to the bot to get your ID',
-
-    // Admin
-    dashboard: 'Dashboard',
-    addProduct: 'Add Product',
-    editProduct: 'Edit Product',
-    deleteProduct: 'Delete Product',
-    productList: 'Product List',
-    ordersList: 'Orders List',
-    customer: 'Customer',
-    name: 'Name',
-    save: 'Save',
-    cancel: 'Cancel',
-    delete: 'Delete',
-    edit: 'Edit',
-    confirmDelete: 'Are you sure you want to delete this product?',
-    imageUrl: 'Image URL',
-    uploadImage: 'Upload Image',
-    selectImage: 'Select Image',
-    changeImage: 'Change Image',
-    updateStatus: 'Update Status',
-    statusUpdated: 'Order status updated successfully',
-
-    // Messages
-    loginSuccess: 'Login successful',
-    loginError: 'Login error',
-    signupSuccess: 'Account created successfully',
-    signupError: 'Signup error',
-    productAdded: 'Product added successfully',
-    productUpdated: 'Product updated successfully',
-    productDeleted: 'Product deleted successfully',
-    error: 'An error occurred',
-
-    // Favorites
-    addToFavorites: 'Add to Favorites',
-    removeFromFavorites: 'Remove from Favorites',
-    noFavorites: 'No favorites yet',
-    favoriteAdded: 'Added to favorites',
-    favoriteRemoved: 'Removed from favorites',
-
-    // Cart
-    cart: 'Cart',
-    addToCart: 'Add to Cart',
-    removeFromCart: 'Remove from Cart',
-    cartAdded: 'Added to cart',
-    cartRemoved: 'Removed from cart',
-    emptyCart: 'Your cart is empty',
-    checkout: 'Checkout',
-    total: 'Total',
-    continueShopping: 'Continue Shopping',
-    delivery: 'Delivery',
-    deliveryAddress: 'Address',
-    deliveryLocation: 'Delivery Location',
-    governorate: 'Governorate',
-    orderNotes: 'Order Notes',
-    confirmDelivery: 'Confirm Delivery',
-    deliverySuccess: 'Delivery order confirmed successfully!',
-    deliveryError: 'An error occurred while confirming delivery',
-    deliveryType: 'Delivery Type',
-    pickup: 'Pickup from Store',
-    deliveryCost: 'Delivery Cost',
-
-    // About Page
-    aboutTitle: 'About Us',
-    aboutSubtitle: 'Our Story & Vision',
-    ourStory: 'Our Story',
-    ourMission: 'Our Mission',
-    ourVision: 'Our Vision',
-
-    // Contact Page
-    contactTitle: 'Contact',
-    contactSubtitle: 'We\'re Here to Help',
-    yourName: 'Your Name',
-    yourEmail: 'Your Email',
-    subject: 'Subject',
-    message: 'Your Message',
-    sendMessage: 'Send Message',
-    messageSent: 'Your message has been sent successfully',
-    phone: 'Phone',
-    // address: 'Address',
-    workingHours: 'Working Hours',
-
-    // Orders
-    myOrders: 'My Orders',
-    orderId: 'Order ID',
-    orderDate: 'Order Date',
-    orderStatus: 'Status',
-    orderTotal: 'Total',
-    orderDetails: 'Order Details',
-    items: 'Items',
-    status_pending: 'Pending',
-    status_processing: 'Processing',
-    status_shipped: 'Shipped',
-    status_delivered: 'Delivered',
-    status_cancelled: 'Cancelled',
-    noOrders: 'You have no previous orders',
-    startShopping: 'Start Shopping Now',
-    backToOrders: 'Back to Orders',
-    orderSummary: 'Order Summary',
-    deliveryInfo: 'Delivery Info',
-
-    // Footer
-    copyright: '© 2025 Silver Rooster. All rights reserved.',
-
-
-    
+"faq.a1": 'The SARIAN app includes services such as ordering food, shopping, and direct delivery.The only door.',
+'faq.a2': 'Currently, the SARIAN app is available in several Moroccan cities, and will eventually cover medical services.',
+'faq.a3': 'Delivery fees or charges may apply depending on the type of order and distance; therefore, all costs will be displayed before ordering.',
+'faq.a4': 'You must have a valid, usable data license and a fully functional smartphone to place orders.',
+'faq.a5': 'You can download the app from the Google Play Store or the App Store. The new account includes your phone number or email address.',
+'faq.a6': 'The app connects customers with nearby restaurants and shops, allowing them to easily place orders through the app and online, and track their deliveries.',
+'faq.a7': 'You can easily order food or shop through the SARIAN app by browsing the store, selecting products, and completing your order using the available payment methods.',
+'faq.a8': 'Yes, you can modify or customize your order within a short period after school, according to For shopping or restaurant policies.',
+'faq.a9': 'You can expand your business, reach more customers, powered by farmers e-payment services.',
+'faq.a10': 'If you own a restaurant or shop, you can register via the website or app, and our team will contact you to activate your account.'
   },
 };
 

@@ -15,13 +15,15 @@ export const ServicesOverviewSection = (): JSX.Element => {
       <div className="relative z-10 container mx-auto px-4 py-8 flex flex-col items-center gap-16">
         <div className="flex flex-col items-center gap-8 max-w-4xl translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]">
           <div className="inline-flex items-center justify-center">
-            <h2 className={`font-bold text-white text-4xl md:text-4xl lg:text-5xl 
-               text-center [font-family:'Inter',Helvetica] tracking-[0] leading-normal ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
+            <h2 className={`font-bold text-white text-2xl md:text-4xl lg:text-4xl 
+               text-center [font-family: Georgia, 'Times New Roman', Times, serif] tracking-[0] leading-normal ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
               {t('coverage.title')}
             </h2>
           </div>
 
-          <p className={`max-w-[730px] font-normal text-white text-lg md:text-2xl lg:text-3xl text-center [font-family:'Inter',Helvetica] tracking-[0] leading-normal ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
+          <p className={`max-w-[730px] font-normal text-white text-md md:text-2xl
+             lg:text-xl text-center [font-family: Georgia, 'Times New Roman', Times, serif]
+              tracking-[0] leading-normal ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
             {t('coverage.desc')}
           </p>
         </div>
