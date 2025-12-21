@@ -64,7 +64,7 @@ export const FeaturedItemsSection = (): JSX.Element => {
                   />
 
                   <div className={`flex flex-col items-center gap-6 w-full max-w-[415px] ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
-                    <h3 className="font-bold text-black text-[35px] text-center [font-family: Georgia, 'Times New Roman', Times, serif] tracking-[0] leading-normal">
+                    <h3 className="font-bold text-black text-[28px] text-center [font-family: Georgia, 'Times New Roman', Times, serif] tracking-[0] leading-normal">
                       {card.title}
                     </h3>
 
