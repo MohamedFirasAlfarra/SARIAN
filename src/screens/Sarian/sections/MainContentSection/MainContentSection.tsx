@@ -2,17 +2,16 @@ import React from "react";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { useLanguage } from "../../../../contexts/LanguageContext";
+import chocolate from "../../../../assets/chocolate.png";
+import Gift from "../../../../assets/Gift.png";
+import fruit from "../../../../assets/fruit.png";
+import flower from "../../../../assets/flower.png";
+import pharmace from "../../../../assets/pharmace.png";
 
 export const MainContentSection = (): JSX.Element => {
   const { t, language } = useLanguage();
 
   const services = [
-    {
-      title: t('services.flowers.title'),
-      description: t('services.flowers.desc'),
-      buttonText: t('services.flowers.btn'),
-      image: "https://c.animaapp.com/mj5q34e29K0n2Q/img/pngegg-2-2.png",
-    },
     {
       title: t('services.food.title'),
       description: t('services.food.desc'),
@@ -23,25 +22,31 @@ export const MainContentSection = (): JSX.Element => {
       title: t('services.grocery.title'),
       description: t('services.grocery.desc'),
       buttonText: t('services.grocery.btn'),
-      image: "https://c.animaapp.com/mj5q34e29K0n2Q/img/chocolate-2.png",
+      image: fruit,
     },
     {
-      title: t('services.pharmacy.title'),
-      description: t('services.pharmacy.desc'),
-      buttonText: t('services.pharmacy.btn'),
-      image: "https://c.animaapp.com/mj5q34e29K0n2Q/img/pngegg-2-2.png",
-    },
-    {
-      title: t('services.chocolate.title'),
-      description: t('services.chocolate.desc'),
-      buttonText: t('services.chocolate.btn'),
-      image: "https://c.animaapp.com/mj5q34e29K0n2Q/img/chocolate-2.png",
+      title: t('services.flowers.title'),
+      description: t('services.flowers.desc'),
+      buttonText: t('services.flowers.btn'),
+      image: flower,
     },
     {
       title: t('services.gift.title'),
       description: t('services.gift.desc'),
       buttonText: t('services.gift.btn'),
-      image: "https://c.animaapp.com/mj5q34e29K0n2Q/img/pizza-2.png",
+      image: Gift,
+    },
+    {
+      title: t('services.chocolate.title'),
+      description: t('services.chocolate.desc'),
+      buttonText: t('services.chocolate.btn'),
+      image: chocolate,
+    },
+    {
+      title: t('services.pharmacy.title'),
+      description: t('services.pharmacy.desc'),
+      buttonText: t('services.pharmacy.btn'),
+      image: pharmace,
     },
   ];
 
@@ -56,19 +61,26 @@ export const MainContentSection = (): JSX.Element => {
           </h2>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 ">
           {services.map((service, index) => (
             <Card
               key={index}
-              className="relative h-full min-h-[380px] md:min-h-[420px] lg:min-h-[480px]
-                bg-[url(https://c.animaapp.com/mj5q34e29K0n2Q/img/vector-2-1.svg)]
-                bg-[100%_100%] bg-no-repeat bg-white/50 border-0 rounded-2xl translate-y-[-1rem] animate-fade-in opacity-0"
+              className="relative h-full min-h-[380px] md:min-h-[420px] lg:min-h-[520px]
+              bg-transparent border-0 overflow-visible translate-y-[-1rem] animate-fade-in opacity-0 group"
               style={
                 {
                   "--animation-delay": `${(index + 1) * 200}ms`,
+                  clipPath: 'polygon(100% -7%, 0 0, 0 100%, 100% 100%)',
                 } as React.CSSProperties
               }
             >
+              {/* Refined CSS Background matching the provided image */}
+              <div
+                className="absolute inset-0 bg-[#F2F0F0] -z-10 transition-all duration-500 rounded-[40px] group-hover:scale-[1.02]"
+                style={{
+                  transform: 'skewY(-1.5deg)',
+                }}
+              />
               <CardContent className="relative h-full flex flex-col items-center justify-between p-4 md:p-6 lg:p-8 gap-4 md:gap-5 lg:gap-6">
                 <div className="w-full flex justify-center items-center h-[120px] md:h-[150px] lg:h-[180px]">
                   <img
@@ -79,11 +91,11 @@ export const MainContentSection = (): JSX.Element => {
                 </div>
 
                 <div className="flex flex-col items-center gap-3 md:gap-4 w-full flex-grow">
-                  <h3 className={`font-semibold text-black text-xl md:text-2xl lg:text-3xl text-center whitespace-normal [font-family: Georgia, 'Times New Roman', Times, serif] tracking-[0] leading-normal ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
+                  <h3 className={`font-bold text-black text-xl md:text-2xl lg:text-4xl text-center whitespace-normal [font-family: Georgia, 'Times New Roman', Times, serif] tracking-[0] leading-normal ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
                     {service.title}
                   </h3>
 
-                  <p className={`font-light text-black text-sm md:text-base lg:text-lg text-center [font-family: Georgia, 'Times New Roman', Times, serif] tracking-[0] leading-normal ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
+                  <p className={`lg:w-72 font-light text-black text-sm md:text-base lg:text-xl text-center [font-family: Georgia, 'Times New Roman', Times, serif] tracking-[0] leading-normal ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
                     {service.description}
                   </p>
                 </div>
