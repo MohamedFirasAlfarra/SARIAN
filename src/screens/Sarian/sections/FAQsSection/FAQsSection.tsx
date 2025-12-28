@@ -65,8 +65,8 @@ export const FAQsSection = (): JSX.Element => {
   ];
 
   return (
-    <section className="w-full py-8 px-4 md:px-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-[16px]">
+    <section className="w-full py-10 md:py-12 lg:py-16 px-4 md:px-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
         {faqItems.map((item, index) => (
           <div
             key={item.id}
@@ -80,15 +80,14 @@ export const FAQsSection = (): JSX.Element => {
                 value={item.id}
                 className="border border-solid border-[#c7c7c7] rounded-[15px] overflow-hidden bg-white"
               >
-                <AccordionTrigger className={`flex items-center justify-between px-4 md:px-8 py-4 md:py-8 hover:no-underline [&[data-state=open]>svg]:rotate-180 ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
-                  <div className={`flex items-center gap-4 md:gap-[33px] w-full ${language === 'ar' ? 'flex-row' : 'flex-row-reverse'}`}>
-                    <span className={`[font-family: Georgia, 'Times New Roman', Times, serif] font-normal text-black text-lg md:text-2xl tracking-[0] leading-normal whitespace-normal w-full ${language === 'ar' ? 'text-right' : 'text-left'}`}>
+                <AccordionTrigger className={`flex items-center justify-between px-3 md:px-6 lg:px-8 py-3 md:py-5 lg:py-6 hover:no-underline [&[data-state=open]>svg]:rotate-180 ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
+                  <div className={`flex items-center gap-3 md:gap-4 lg:gap-[33px] w-full ${language === 'ar' ? 'flex-row' : 'flex-row-reverse'}`}>
+                    <span className={`[font-family: Georgia, 'Times New Roman', Times, serif] font-normal text-black text-base md:text-lg lg:text-xl tracking-[0] leading-normal whitespace-normal w-full ${language === 'ar' ? 'text-right' : 'text-left'}`}>
                       {item.question}
                     </span>
-                    {/* <ChevronDownIcon className="w-8 h-8 md:w-[49px] md:h-[49px] shrink-0 transition-transform duration-200 text-gray-500" /> */}
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className={`px-4 md:px-8 pb-4 md:pb-8 text-base md:text-xl ${language === 'ar' ? 'text-right' : 'text-left'}`}>
+                <AccordionContent className={`px-3 md:px-6 lg:px-8 pb-3 md:pb-5 lg:pb-6 text-sm md:text-base lg:text-lg ${language === 'ar' ? 'text-right' : 'text-left'}`}>
                   {item.answer}
                 </AccordionContent>
               </AccordionItem>
