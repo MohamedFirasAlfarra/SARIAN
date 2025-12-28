@@ -27,14 +27,19 @@ export const FeaturedItemsSection = (): JSX.Element => {
   ];
 
   return (
-    <section className="relative w-full flex justify-center overflow-hidden py-36 md:py-20 lg:py-28 mb-10">
-      <img
-        className="absolute top-0 left-0 w-full h-full object-cover pointer-events-none z-0"
-        alt="Background"
-        src="https://c.animaapp.com/mj5q34e29K0n2Q/img/background-1.svg"
+    <section className="relative w-full flex justify-center overflow-hidden
+    w-full min-h-[500px] md:min-h-[500px] 
+    lg:min-h-screen">
+      {/* CSS Background instead of SVG */}
+      <div
+        className="absolute top-0 left-0 w-full h-full pointer-events-none z-0"
+        style={{
+          // background: 'linear-gradient(165deg, #EAEAEA 0%, #EAEAEA 70%, #F0F0F0 100%)',
+          clipPath: 'polygon(100% 17%, 0 0, 0 76%, 100% 100%)'
+        }}
       />
       <div className="relative w-full max-w-[1436px] z-10">
-        <div className="relative flex flex-col items-center gap-8 px-4 pt-12 md:pt-16 lg:pt-20 pb-12 md:pb-16 lg:pb-20">
+        <div className="relative flex flex-col items-center gap-8 px-4 py-16 md:py-20 lg:py-28">
           {/* Header */}
           <header className={`flex flex-col items-center gap-6 md:gap-7 lg:gap-8 max-w-[918px] translate-y-[-1rem] animate-fade-in opacity-0 ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
             <h2 className="font-bold text-black text-2xl md:text-3xl lg:text-[38px] text-center 

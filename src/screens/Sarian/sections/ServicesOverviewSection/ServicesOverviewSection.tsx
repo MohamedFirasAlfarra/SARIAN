@@ -6,14 +6,17 @@ export const ServicesOverviewSection = (): JSX.Element => {
 
   return (
     <section className="relative w-full min-h-[500px] md:min-h-[500px] 
-    lg:min-h-screen py-32 md:py-20 lg:py-24 px-4 md:px-8 lg:px-20">
-      <img
-        className="absolute inset-0 w-full h-full object-cover"
-        alt="Section background"
-        src="https://c.animaapp.com/mj5q34e29K0n2Q/img/section3.svg"
+    lg:min-h-screen py-14">
+      {/* CSS Background instead of SVG */}
+      <div
+        className="absolute inset-0 w-full h-full"
+        style={{
+          background: 'linear-gradient(165deg, #444444 0%, #444444 70%, #555555 100%)',
+          clipPath: 'polygon(100% 17%, 0 0, 0 76%, 100% 100%)'
+        }}
       />
 
-      <div className="relative z-10 container mx-auto py-8 md:py-12 lg:py-16 flex flex-col items-center gap-12 md:gap-14 lg:gap-16">
+      <div className="relative z-10 container mx-auto py-16 md:py-20 lg:py-24 px-4 md:px-8 lg:px-20 flex flex-col items-center gap-12 md:gap-14 lg:gap-16">
         <div className="flex flex-col items-center gap-6 md:gap-7 lg:gap-8 max-w-4xl translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:200ms]">
           <div className="inline-flex items-center justify-center">
             <h2 className={`font-bold text-white text-2xl md:text-3xl lg:text-4xl
