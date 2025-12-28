@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { useLanguage } from "../../../../contexts/LanguageContext";
-import { Truck,  Building2} from "lucide-react";
+import { Truck, Building2 } from "lucide-react";
 
 export const FeaturedItemsSection = (): JSX.Element => {
   const { t, language } = useLanguage();
@@ -49,7 +49,9 @@ export const FeaturedItemsSection = (): JSX.Element => {
             {cardsData.map((card, index) => (
               <Card
                 key={card.id}
-                className="relative w-full max-w-[585px] bg-white rounded-[20px] shadow-[4px_4px_8.2px_4px_#00000040] overflow-visible translate-y-[-1rem] animate-fade-in opacity-0"
+                className="relative w-full max-w-[320px] md:max-w-[450px] lg:max-w-[585px] bg-white
+                 rounded-[20px] shadow-[4px_4px_8.2px_4px_#00000040] overflow-visible 
+                 translate-y-[-1rem] animate-fade-in opacity-0"
                 style={
                   {
                     "--animation-delay": `${(index + 1) * 200}ms`,

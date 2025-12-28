@@ -33,7 +33,7 @@ export const ServicesOverviewSection = (): JSX.Element => {
             className="w-full h-auto object-cover rounded-lg"
             alt="Google map showing service coverage"
             src={mapImg}
-            />
+          />
         </div>
       </div>
     </section>
