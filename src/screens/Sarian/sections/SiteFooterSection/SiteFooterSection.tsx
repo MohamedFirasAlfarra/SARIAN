@@ -1,14 +1,11 @@
-import { Moon, Sun } from "lucide-react";
-
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { useTheme } from "@/contexts/ThemeContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const SiteFooterSection = (): JSX.Element => {
   const { t, language, setLanguage } = useLanguage();
-  const { theme, toggleTheme } = useTheme();
 
   const footerColumns = [
     {
@@ -75,11 +72,11 @@ export const SiteFooterSection = (): JSX.Element => {
         <div className="max-w-7xl mx-auto">
           {/* Main Footer Content */}
           <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start gap-8 lg:gap-12 py-8 md:py-12">
-            {/* Language & Theme Controls */}
+            {/* Language Controls */}
             <div className="flex flex-col items-center lg:items-start gap-4 order-3 lg:order-1">
               <Button
                 variant="secondary"
-                className="h-auto bg-[#333333] hover:bg-[#444444] dark:bg-[#555555] dark:hover:bg-[#666666] rounded-[20px] px-4 sm:px-6 py-3 sm:py-4 gap-3 transition-colors"
+                className="h-auto bg-[#333333] hover:bg-[#444444] rounded-[20px] px-4 sm:px-6 py-3 sm:py-4 gap-3 transition-colors"
                 onClick={() => setLanguage(language === 'ar' ? 'en' : 'ar')}
               >
                 <img
@@ -95,19 +92,6 @@ export const SiteFooterSection = (): JSX.Element => {
                 <span className="[font-family:'Inter',Helvetica] font-normal text-white text-lg sm:text-xl">
                   {t('footer.language')}
                 </span>
-              </Button>
-
-              <Button
-                variant="secondary"
-                size="icon"
-                onClick={toggleTheme}
-                className="h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-[#333333] hover:bg-[#444444] dark:bg-[#555555] dark:hover:bg-[#666666] transition-colors"
-              >
-                {theme === 'light' ? (
-                  <Moon className="h-5 w-5 text-white" />
-                ) : (
-                  <Sun className="h-5 w-5 text-white" />
-                )}
               </Button>
             </div>
 

@@ -10,8 +10,7 @@ export const HeroSection = (): JSX.Element => {
     <section
       style={{ backgroundImage: `url(${bgHeroSection})` }}
       className="relative w-full min-h-screen 
-    bg-cover bg-right overflow-hidden py-20 md:py-28 lg:py-36 xl:py-96
-    ">
+    bg-cover bg-right overflow-hidden py-20 md:py-28 lg:py-36 xl:py-96">
 
       <MobileAppBanner />
       <Navbar />
