@@ -65,7 +65,8 @@ export const FAQsSection = (): JSX.Element => {
   ];
 
   return (
-    <section className="w-full py-10 md:py-12 lg:py-16 px-4 md:px-8">
+   <center >
+     <section className="w-[80%] flex justify-center items-center py-10 md:py-12 lg:py-16 px-4 md:px-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
         {faqItems.map((item, index) => (
           <div
@@ -82,12 +83,12 @@ export const FAQsSection = (): JSX.Element => {
               >
                 <AccordionTrigger className={`flex items-center justify-between px-3 md:px-6 lg:px-8 py-3 md:py-5 lg:py-6 hover:no-underline [&[data-state=open]>svg]:rotate-180 ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
                   <div className={`flex items-center gap-3 md:gap-4 lg:gap-[33px] w-full ${language === 'ar' ? 'flex-row' : 'flex-row-reverse'}`}>
-                    <span className={`[font-family: Georgia, 'Times New Roman', Times, serif] font-normal text-black text-base md:text-lg lg:text-xl tracking-[0] leading-normal whitespace-normal w-full ${language === 'ar' ? 'text-right' : 'text-left'}`}>
+                    <span className={`[font-family: Georgia, 'Times New Roman', Times, serif] font-semibold text-black text-base md:text-lg lg:text-xl tracking-[0] leading-normal whitespace-normal w-full ${language === 'ar' ? 'text-right' : 'text-left'}`}>
                       {item.question}
                     </span>
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className={`px-3 md:px-6 lg:px-8 pb-3 md:pb-5 lg:pb-6 text-sm md:text-base lg:text-lg ${language === 'ar' ? 'text-right' : 'text-left'}`}>
+                <AccordionContent className={`px-3 md:px-6 lg:px-8 pb-3 md:pb-5 lg:pb-6 text-sm md:text-sm lg:text-sm ${language === 'ar' ? 'text-right' : 'text-left'}`}>
                   {item.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -96,5 +97,6 @@ export const FAQsSection = (): JSX.Element => {
         ))}
       </div>
     </section>
+   </center>
   );
 };

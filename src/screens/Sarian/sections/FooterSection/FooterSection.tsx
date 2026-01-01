@@ -1,33 +1,41 @@
 import { Button } from "../../../../components/ui/button";
 import { Separator } from "../../../../components/ui/separator";
 import { useLanguage } from "../../../../contexts/LanguageContext";
-import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube } from "react-icons/fa";
-import { ChevronDown } from "lucide-react";
+import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube, FaSnapchat, FaTiktok } from "react-icons/fa";
+import { Globe, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
-import bgFooterSection from "../../../../assets/bgFooterSection.jpeg";
+import logopng from '../../../../assets/logo.png' ;
+import appstore from '../../../../assets/appstore.png' ;
+import googleplay from '../../../../assets/googleplay.png' ;
 
 export const FooterSection = (): JSX.Element => {
   const { t, language, setLanguage } = useLanguage();
-  const [openSection, setOpenSection] = useState<string | null>(null);
+  const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
+
+  const toggleSection = (id: string) => {
+    setOpenSections(prev => ({ ...prev, [id]: !prev[id] }));
+  };
 
   const cities = [
-    t('footer.cities.damascus'),
-    t('footer.cities.daraa'),
-    t('footer.cities.homs'),
-    t('footer.cities.tartus'),
-    t('footer.cities.aleppo'),
+    t('footer.cities.rabat'),
+    t('footer.cities.casablanca'),
+    t('footer.cities.tangier'),
+    t('footer.cities.agadir'),
+    t('footer.cities.fes'),
+    t('footer.cities.marrakech'),
   ];
 
   const restaurants = [
-    "Moojood",
-    "دار الناجي",
-    "SuchiHouse",
-    "Capanna",
-    "dipndip",
+    t('footer.restaurants.moojood'),
+    t('footer.restaurants.darnaji'),
+    t('footer.restaurants.suchihouse'),
+    t('footer.restaurants.ayumuk'),
+    t('footer.restaurants.capanna'),
+    t('footer.restaurants.dipndip'),
   ];
 
   const foods = [
-    t('footer.foods.syrian'),
+    t('footer.foods.moroccan'),
     t('footer.foods.asian'),
     t('footer.foods.italian'),
     t('footer.foods.desserts'),
@@ -40,254 +48,150 @@ export const FooterSection = (): JSX.Element => {
     t('footer.services.chocolate'),
     t('footer.services.grocery'),
     t('footer.services.gift'),
+    t('footer.services.pharmacy'),
   ];
 
-  const footerLinks = [
+  const footerLinksBottom = [
     t('footer.links.about'),
     t('footer.links.contact'),
+    t('footer.links.blog'),
     t('footer.links.how'),
+    t('footer.links.review'),
     t('footer.links.terms'),
     t('footer.links.privacy'),
+    t('footer.links.security'),
+    t('footer.links.cookies'),
   ];
-
-  const toggleSection = (section: string) => {
-    setOpenSection(openSection === section ? null : section);
-  };
 
   const navSections = [
-    { id: 'cities', title: t('footer.cities'), items: cities },
-    { id: 'restaurants', title: t('footer.restaurants'), items: restaurants },
-    { id: 'foods', title: t('footer.restaurants'), items: foods },
     { id: 'services', title: t('footer.services'), items: services },
+    { id: 'foods', title: t('footer.cuisines'), items: foods },
+    { id: 'restaurants', title: t('footer.restaurants'), items: restaurants },
+    { id: 'cities', title: t('footer.cities'), items: cities },
   ];
 
+
   return (
-    <footer
-      style={{ backgroundImage: `url(${bgFooterSection})` }}
-      className="relative w-full 
-    bg-cover bg-center overflow-hidden">
-      <div className="w-full h-full absolute inset-0 z-0" />
+    <footer className="relative w-full overflow-hidden pt-16 pb-10">
+      <div
+        className="absolute inset-0 bg-[#333333] z-0"
+        style={{ clipPath: 'polygon(0 4%, 100% 0, 100% 100%, 0 100%)' }} />
 
-      {/* Mobile/Tablet Layout */}
-      <div className="lg:hidden relative z-10 w-full px-4 md:px-8 py-8 md:py-12">
-        {/* Top Section: Logo + App Buttons */}
-        <div className="flex flex-col items-center gap-6 mb-8 md:mb-10">
-          <div className="w-[120px] md:w-[160px] animate-bounce-slow">
-            <img
-              className="h-auto rounded-[20px] w-full object-cover shadow-2xl hover:shadow-[0_0_30px_rgba(255,212,0,0.5)] transition-all duration-300 hover:scale-105"
-              alt="Logo"
-              src="https://c.animaapp.com/mj5q34e29K0n2Q/img/logo-sarian2-1.png"
-            />
-          </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="flex flex-col lg:hidden gap-8 items-center w-full mb-10">          
+            <img src={logopng}
+             alt="Logo" className="w-40 h-3w-40 rounded-xl  object-contain invert-[.1]" />
+          <Separator className="bg-white" />
 
-          <div className="flex flex-row gap-3 md:gap-4">
-            <a
-              href="#"
-              className="w-[110px] md:w-[122px] h-[44px] md:h-[49px] rounded-[15px] border border-solid border-black [background:url(https://c.animaapp.com/mj5q34e29K0n2Q/img/frame-3-1.png)_50%_50%_/_cover] hover:opacity-80 transition-opacity"
-            />
-            <a
-              href="#"
-              className="w-[118px] md:w-[130px] h-[44px] md:h-[49px] rounded-[15px] border border-solid border-black [background:url(https://c.animaapp.com/mj5q34e29K0n2Q/img/frame-4-1.png)_50%_50%_/_cover] hover:opacity-80 transition-opacity"
-            />
-          </div>
-        </div>
-
-        <Separator className="w-full bg-white/20 mb-6 md:mb-8" />
-
-        {/* Accordion Navigation */}
-        <div className="mb-8 md:mb-10">
-          <div className="space-y-3" dir={language === 'ar' ? "rtl" : "ltr"}>
+          <div className="w-full flex flex-col">
             {navSections.map((section) => (
-              <div key={section.id} className="border border-white/20 rounded-lg overflow-hidden bg-white/5">
+              <div key={section.id} className="border-b border-white w-full">
                 <button
                   onClick={() => toggleSection(section.id)}
-                  className="w-full flex items-center justify-between px-4 py-3 text-white hover:bg-white/10 transition-colors"
+                  className={`w-full py-4 flex items-center justify-between text-gray-300 font-semibold text-[13px] ${language === 'ar' ? 'flex-row' : ''}`}
                 >
-                  <h3 className="font-medium text-base md:text-lg">{section.title}</h3>
-                  <ChevronDown
-                    className={`w-5 h-5 transition-transform duration-300 ${openSection === section.id ? 'rotate-180' : ''
-                      }`}
-                  />
+                  <span>{section.title}</span>
+                  {openSections[section.id] ? <ChevronUp className="w-5 h-5 opacity-50" /> : <ChevronDown className="w-5 h-5 opacity-50" />}
                 </button>
-                <div
-                  className={`overflow-hidden transition-all duration-300 ${openSection === section.id ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
-                    }`}
-                >
-                  <div className="px-4 pb-3 pt-1 flex flex-col gap-2">
-                    {section.items.map((item, index) => (
-                      <a
-                        key={index}
-                        href="#"
-                        className="text-white/80 text-sm md:text-base hover:text-white transition-colors py-1"
-                      >
-                        {item}
-                      </a>
+                <div className={`overflow-hidden transition-all duration-300 ${openSections[section.id] ? 'max-h-[500px] opacity-100 pb-4' : 'max-h-0 opacity-0'}`}>
+                  <div className={`flex flex-col gap-3 ${language === 'ar' ? 'items-start text-right' : 'items-start text-left'}`}>
+                    {section.items.map((item, idx) => (
+                      <a key={idx} href="#" className="text-white/70 hover:text-white transition-colors text-[12px]">{item}</a>
                     ))}
                   </div>
                 </div>
               </div>
             ))}
           </div>
+
+          <div className="flex flex-row gap-4 mt-4">
+            <button className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-xl border border-white/20 hover:bg-black/80 transition-all">
+              <img  src={appstore} alt="App Store" className="w-28 h-15" />
+            
+            </button>
+            <button className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-xl border border-white/20 hover:bg-black/80 transition-all">
+              <img src={googleplay} alt="Google Play" className="w-28 h-15" />
+            
+            </button>
+          </div>
         </div>
 
-        <Separator className="w-full bg-white/20 mb-6 md:mb-8" />
+        <div className={`hidden lg:flex flex-col lg:flex-row gap-12 lg:gap-8 justify-between ${language === 'ar' ? 'lg:flex-row' : ''}`}>
+          <div className={`flex flex-col items-center lg:items-end gap-6 w-full lg:w-1/4 ${language === 'ar' ? 'lg:items-start' : 'lg:items-start'}`}>        
+              <img src={logopng} alt="Logo" className="w-40 h-3w-40 rounded-xl  object-contain invert-[.1]" />
+            <div className="flex flex-col gap-3">
+              <button className="flex items-center gap-3 bg-black text-white px-4 py-2 rounded-xl border border-white/20 hover:bg-black/80 transition-all w-[160px]">
+                  <img  src={appstore} alt="App Store" className="w-36 h-15" />
+              </button>
+              <button className="flex items-center gap-3 bg-black text-white px-4 py-2 rounded-xl border border-white/20 hover:bg-black/80 transition-all w-[160px]">
+              <img src={googleplay} alt="Google Play" className="w-36 h-15" />
+              </button>
+            </div>
+          </div>  
 
-        {/* Bottom Section */}
-        <div className="flex flex-col gap-6">
-          {/* Social Icons */}
-          <div className="flex items-center justify-center gap-3 md:gap-4">
-            <a href="#" className="group relative w-10 h-10 md:w-11 md:h-11 flex items-center justify-center rounded-full bg-white/10 hover:bg-[#1877F2] transition-all duration-300 hover:scale-110">
-              <FaFacebook className="w-5 h-5 text-white" />
-            </a>
-            <a href="#" className="group relative w-10 h-10 md:w-11 md:h-11 flex items-center justify-center rounded-full bg-white/10 hover:bg-gradient-to-br hover:from-[#833AB4] hover:via-[#E1306C] hover:to-[#F77737] transition-all duration-300 hover:scale-110">
-              <FaInstagram className="w-5 h-5 text-white" />
-            </a>
-            <a href="#" className="group relative w-10 h-10 md:w-11 md:h-11 flex items-center justify-center rounded-full bg-white/10 hover:bg-[#1DA1F2] transition-all duration-300 hover:scale-110">
-              <FaTwitter className="w-5 h-5 text-white" />
-            </a>
-            <a href="#" className="group relative w-10 h-10 md:w-11 md:h-11 flex items-center justify-center rounded-full bg-white/10 hover:bg-[#0A66C2] transition-all duration-300 hover:scale-110">
-              <FaLinkedin className="w-5 h-5 text-white" />
-            </a>
-            <a href="#" className="group relative w-10 h-10 md:w-11 md:h-11 flex items-center justify-center rounded-full bg-white/10 hover:bg-[#FF0000] transition-all duration-300 hover:scale-110">
-              <FaYoutube className="w-5 h-5 text-white" />
-            </a>
+          <div className="flex-1">
+            <div className={`grid grid-cols-4 gap-8 ${language === 'ar' ? 'text-right' : 'text-left'}`}>
+              {navSections.map((section) => (
+                <div key={section.id} className="flex flex-col gap-5">
+                  <h3 className="text-white/60 font-medium text-xs sm:text-sm uppercase tracking-wider">{section.title}</h3>
+                  <div className="flex flex-col gap-3">
+                    {section.items.map((item, idx) => (
+                      <a
+                        key={idx}
+                        href="#"
+                        className="text-white text-[13px] sm:text-[15px] font-bold hover:text-[#FFD400] transition-colors leading-tight">
+                        {item}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Footer Links */}
-          <nav className="flex flex-wrap justify-center items-center gap-3 md:gap-4" dir={language === 'ar' ? "rtl" : "ltr"}>
-            {footerLinks.map((link, index) => (
-              <a key={index} href="#" className="font-medium text-[#c7c7c7] text-sm md:text-base text-center hover:text-white transition-colors">
+          <div className={`w-full lg:w-auto flex justify-center lg:block ${language === 'ar' ? 'lg:order-last' : ''}`}>
+            <Button
+              variant="outline"
+              className="bg-[#444444] border-0 text-white rounded-full px-6 py-6 flex items-center gap-3 hover:bg-[#555555] transition-all"
+              onClick={() => setLanguage(language === 'ar' ? 'en' : 'ar')}>
+              <div className="bg-[#FF4B2B] p-1.5 rounded-full">
+                <Globe className="w-4 h-4 text-white" />
+              </div>
+              <span className="font-bold text-base">{language === 'ar' ? 'العربية' : 'English'}</span>
+              <ChevronDown className="w-4 h-4 opacity-50" />
+            </Button>
+          </div>
+        </div>
+
+        <Separator className="my-10 bg-white/10" />
+        <div className={`flex flex-col md:flex-row items-center justify-between gap-8 ${language === 'ar' ? 'md:flex-row-reverse' : ''}`}>
+
+          <div className="flex items-center gap-4">
+            <a href="#" className="text-white/50 hover:text-white transition-all"><FaTwitter size={20} /></a>
+            <a href="#" className="text-white/50 hover:text-white transition-all"><FaLinkedin size={20} /></a>
+            <a href="#" className="text-white/50 hover:text-white transition-all"><FaFacebook size={20} /></a>
+            <a href="#" className="text-white/50 hover:text-white transition-all"><FaSnapchat size={20} /></a>
+            <a href="#" className="text-white/50 hover:text-white transition-all"><FaTiktok size={20} /></a>
+            <a href="#" className="text-white/50 hover:text-white transition-all"><FaInstagram size={20} /></a>
+            <a href="#" className="text-white/50 hover:text-white transition-all"><FaYoutube size={20} /></a>
+          </div>
+
+          <div className={`flex flex-wrap justify-center gap-x-6 gap-y-3 ${language === 'ar' ? 'flex-row-reverse' : ''}`}>
+            {footerLinksBottom.map((link, idx) => (
+              <a
+                key={idx}
+                href="#"
+                className="text-white/50 text-xs sm:text-[13px] hover:text-white transition-colors">
                 {link}
               </a>
             ))}
-          </nav>
-
-          {/* Language Toggle */}
-          <div className="flex justify-center">
-            <Button
-              variant="secondary"
-              className="w-[140px] md:w-[156px] h-[56px] md:h-[63px] bg-[#333333] rounded-[20px] hover:bg-[#444444] transition-colors flex items-center justify-center gap-2"
-              onClick={() => setLanguage(language === 'ar' ? 'en' : 'ar')}
-            >
-              <img className="w-4 h-4" alt="Vector" src="https://c.animaapp.com/mj5q34e29K0n2Q/img/vector-8.svg" />
-              <img className="w-6 h-6 md:w-7 md:h-7 object-cover" alt="Ellipse" src="https://c.animaapp.com/mj5q34e29K0n2Q/img/ellipse-1.png" />
-              <span className="[font-family: Georgia, 'Times New Roman', Times, serif] font-normal text-white text-lg md:text-xl">
-                {language === 'ar' ? 'English' : 'العربية'}
-              </span>
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      {/* Desktop Layout (Old Design) */}
-      <div className="hidden lg:block relative z-10 w-full px-20 py-16">
-        <div className="flex flex-row justify-between items-start gap-8">
-          {/* Language Toggle (Left) */}
-          <div className="flex flex-col gap-8 items-start w-auto">
-            <Button
-              variant="secondary"
-              className="w-[156px] h-[63px] bg-[#333333] rounded-[20px] hover:bg-[#444444] transition-colors flex items-center justify-center gap-2"
-              onClick={() => setLanguage(language === 'ar' ? 'en' : 'ar')}
-            >
-              <img className="w-4 h-4" alt="Vector" src="https://c.animaapp.com/mj5q34e29K0n2Q/img/vector-8.svg" />
-              <img className="w-7 h-7 object-cover" alt="Ellipse" src="https://c.animaapp.com/mj5q34e29K0n2Q/img/ellipse-1.png" />
-              <span className={`[font-family: Georgia, 'Times New Roman', Times, serif] font-normal text-white text-xl ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
-                {language === 'ar' ? 'English' : 'العربية'}
-              </span>
-            </Button>
-          </div>
-
-          {/* Navigation Grid (Center) */}
-          <div className="flex-1">
-            <nav className={`grid grid-cols-4 gap-8 ${language === 'ar' ? 'justify-items-end' : 'justify-items-start'}`} dir={language === 'ar' ? "rtl" : "ltr"}>
-              <div className={`flex flex-col gap-4 ${language === 'ar' ? 'items-start text-right' : 'items-start text-left'}`}>
-                <h3 className="font-medium text-white text-xl tracking-[0] leading-[normal]">{t('footer.cities')}</h3>
-                <div className="flex flex-col gap-2">
-                  {cities.map((city, index) => (
-                    <a key={index} href="#" className="font-normal text-white/80 text-base hover:text-white transition-colors">{city}</a>
-                  ))}
-                </div>
-              </div>
-
-              <div className={`flex flex-col gap-4 ${language === 'ar' ? 'items-start text-right' : 'items-start text-left'}`}>
-                <h3 className="font-medium text-white text-xl tracking-[0] leading-[normal]">{t('footer.restaurants')}</h3>
-                <div className="flex flex-col gap-2">
-                  {restaurants.map((restaurant, index) => (
-                    <a key={index} href="#" className="font-normal text-white/80 text-base hover:text-white transition-colors">{restaurant}</a>
-                  ))}
-                </div>
-              </div>
-
-              <div className={`flex flex-col gap-4 ${language === 'ar' ? 'items-start text-right' : 'items-start text-left'}`}>
-                <h3 className="font-medium text-white text-xl tracking-[0] leading-[normal]">{t('footer.restaurants')}</h3>
-                <div className="flex flex-col gap-2">
-                  {foods.map((food, index) => (
-                    <a key={index} href="#" className="font-normal text-white/80 text-base hover:text-white transition-colors">{food}</a>
-                  ))}
-                </div>
-              </div>
-
-              <div className={`flex flex-col gap-4 ${language === 'ar' ? 'items-start text-right' : 'items-start text-left'}`}>
-                <h3 className="font-medium text-white text-xl tracking-[0] leading-[normal]">{t('footer.services')}</h3>
-                <div className="flex flex-col gap-2">
-                  {services.map((service, index) => (
-                    <a key={index} href="#" className="font-normal text-white/80 text-base hover:text-white transition-colors">{service}</a>
-                  ))}
-                </div>
-              </div>
-            </nav>
-          </div>
-
-          {/* Logo + App Buttons (Right) */}
-          <div className="flex flex-col items-center gap-5 w-auto">
-            <div className="w-[200px] p-2.5 animate-bounce-slow">
-              <img
-                className="h-auto rounded-[20px] w-full object-cover shadow-2xl hover:shadow-[0_0_30px_rgba(255,212,0,0.5)] transition-all duration-300 hover:scale-105"
-                alt="Logo"
-                src="https://c.animaapp.com/mj5q34e29K0n2Q/img/logo-sarian2-1.png"
-              />
-            </div>
-
-            <div className="flex flex-col gap-4">
-              <a href="#" className="w-[122px] h-[49px] rounded-[15px] border border-solid border-black [background:url(https://c.animaapp.com/mj5q34e29K0n2Q/img/frame-3-1.png)_50%_50%_/_cover] hover:opacity-80 transition-opacity" />
-              <a href="#" className="w-[130px] h-[49px] rounded-[15px] border border-solid border-black [background:url(https://c.animaapp.com/mj5q34e29K0n2Q/img/frame-4-1.png)_50%_50%_/_cover] hover:opacity-80 transition-opacity" />
-            </div>
           </div>
         </div>
 
-        {/* Bottom Section */}
-        <div className="mt-24 flex flex-col items-center gap-8">
-          <Separator className="w-full bg-white/20" />
-
-          <div className="flex flex-row justify-between items-center w-full gap-8">
-            <div className="flex items-center gap-4">
-              <a href="#" className="group relative w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-[#1877F2] transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#1877F2]/50">
-                <FaFacebook className="w-6 h-6 text-white transition-transform group-hover:scale-110" />
-              </a>
-              <a href="#" className="group relative w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-gradient-to-br hover:from-[#833AB4] hover:via-[#E1306C] hover:to-[#F77737] transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-pink-500/50">
-                <FaInstagram className="w-6 h-6 text-white transition-transform group-hover:scale-110" />
-              </a>
-              <a href="#" className="group relative w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-[#1DA1F2] transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#1DA1F2]/50">
-                <FaTwitter className="w-6 h-6 text-white transition-transform group-hover:scale-110" />
-              </a>
-              <a href="#" className="group relative w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-[#0A66C2] transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#0A66C2]/50">
-                <FaLinkedin className="w-6 h-6 text-white transition-transform group-hover:scale-110" />
-              </a>
-              <a href="#" className="group relative w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-[#FF0000] transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#FF0000]/50">
-                <FaYoutube className="w-6 h-6 text-white transition-transform group-hover:scale-110" />
-              </a>
-            </div>
-
-            <nav className="flex flex-wrap justify-center items-center gap-8" dir={language === 'ar' ? "rtl" : "ltr"}>
-              {footerLinks.map((link, index) => (
-                <a key={index} href="#" className="font-medium text-[#c7c7c7] text-lg text-center hover:text-white transition-colors">
-                  {link}
-                </a>
-              ))}
-            </nav>
-          </div>
-
-          <Separator className="w-full bg-white/20" />
+        <div className="mt-8 text-center">
+          <p className="text-white/30 text-[11px] sm:text-xs">
+            {t('footer.rights')}
+          </p>
         </div>
       </div>
     </footer>

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Button } from "../../../../components/ui/button";
 import { Card, CardContent } from "../../../../components/ui/card";
 import { useLanguage } from "../../../../contexts/LanguageContext";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import chocolate from "../../../../assets/chocolate.png";
 import Gift from "../../../../assets/Gift.png";
 import fruit from "../../../../assets/fruit.png";
@@ -10,6 +11,17 @@ import pharmace from "../../../../assets/pharmace.png";
 
 export const MainContentSection = (): JSX.Element => {
   const { t, language } = useLanguage();
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const scrollAmount = 300;
+      scrollRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const services = [
     {
@@ -52,7 +64,7 @@ export const MainContentSection = (): JSX.Element => {
 
   return (
     <section className="w-full py-12 md:py-14 lg:py-16 px-4 md:px-8 lg:px-16">
-      <div className="max-w-[1440px] mx-auto">
+      <div className="max-w-[1440px] mx-auto relative group/section">
         <header className="flex items-center justify-center mb-12 md:mb-14 lg:mb-16 translate-y-[-1rem] animate-fade-in opacity-0">
           <h2 className={`font-bold text-black text-2xl md:text-3xl lg:text-[40px] text-center
              [font-family: Georgia, 'Times New Roman', Times, serif] tracking-[0] leading-normal
@@ -61,12 +73,39 @@ export const MainContentSection = (): JSX.Element => {
           </h2>
         </header>
 
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 ">
+        {/* Force hide scrollbar for this component specifically */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+          .no-scrollbar::-webkit-scrollbar { display: none !important; }
+          .no-scrollbar { -ms-overflow-style: none !important; scrollbar-width: none !important; }
+        `}} />
+
+        {/* Mobile Navigation Buttons */}
+        <div className="md:hidden flex items-center justify-between absolute top-[55%] -translate-y-1/2 left-0 right-0 z-20 pointer-events-none px-2">
+          <button
+            onClick={() => scroll('left')}
+            className="pointer-events-auto bg-white/90 p-3 rounded-full shadow-xl border border-gray-100 active:scale-90 transition-all"
+          >
+            <ChevronRight className="w-5 h-5 text-black" />
+          </button>
+          <button
+            onClick={() => scroll('right')}
+            className="pointer-events-auto bg-white/90 p-3 rounded-full shadow-xl border border-gray-100 active:scale-90 transition-all"
+          >
+            <ChevronLeft className="w-5 h-5 text-black" />
+          </button>
+        </div>
+
+        <div
+          ref={scrollRef}
+          className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 overflow-x-auto md:overflow-visible snap-x snap-mandatory no-scrollbar pb-4 md:pb-0 px-4 -mx-4 md:px-0 md:mx-0"
+        >
           {services.map((service, index) => (
             <Card
               key={index}
               className="relative h-full min-h-[380px] md:min-h-[420px] lg:min-h-[520px]
-              bg-transparent border-0 overflow-visible translate-y-[-1rem] animate-fade-in opacity-0 group"
+              bg-transparent border-0 overflow-visible translate-y-[-1rem] animate-fade-in opacity-0 group
+              flex-shrink-0 w-[280px] sm:w-[320px] md:w-auto snap-center"
               style={
                 {
                   "--animation-delay": `${(index + 1) * 200}ms`,

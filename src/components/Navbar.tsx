@@ -29,13 +29,11 @@ export const Navbar = (): JSX.Element => {
                     />
                 </Link>
 
-                {/* Navigation Links (Center) - Hidden on Mobile */}
                 <div className="hidden lg:flex items-center gap-6 xl:gap-8">
                     {navLinks.map((link, index) => {
-                        const commonClassName = `relative text-[#0d1b42] text-base lg:text-xl font-bold 
+                        const commonClassName = `relative text-[#0d1b42] text-base lg:text-md font-bold 
                                     whitespace-nowrap [font-family: Georgia, 'Times New Roman', Times, serif] 
                                     ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'} group`;
-
                         const content = (
                             <>
                                 <span className="relative z-10">{link.text}</span>
@@ -119,9 +117,9 @@ export const Navbar = (): JSX.Element => {
 
                         <div className="w-px h-8 bg-[#0d1b42]/10 mx-1" />
 
-                        <button className="p-2 hover:bg-black/5 rounded-full transition-colors hover:scale-110 duration-300">
+                        {/* <button className="p-2 hover:bg-black/5 rounded-full transition-colors hover:scale-110 duration-300">
                             <Search className="w-5 h-5 text-[#0d1b42]" />
-                        </button>
+                        </button> */}
 
                         <button
                             className="p-2 hover:bg-black/5 rounded-full transition-colors hover:scale-110 duration-300"

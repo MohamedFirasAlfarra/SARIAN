@@ -14,7 +14,6 @@ export const BecomePartner = (): JSX.Element => {
             <Navbar />
 
             <main className="w-full relative">
-                {/* Partner Hero Section */}
                 <div className="animate-fade-in opacity-0 [--animation-delay:200ms]">
                     <PartnerInvitationSection />
                 </div>
@@ -28,12 +27,11 @@ export const BecomePartner = (): JSX.Element => {
                         <RegistrationFormSection />
                     </div>
 
-                    <div className="mt-12 md:mt-24 translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:700ms]">
+                    <div className="mt-0 md:mt-24 translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:700ms]">
                         <AppDownloadSection />
                     </div>
                 </div>
 
-                {/* Footer */}
                 <div className="translate-y-[-1rem] animate-fade-in opacity-0 [--animation-delay:800ms]">
                     <FooterSection />
                 </div>
