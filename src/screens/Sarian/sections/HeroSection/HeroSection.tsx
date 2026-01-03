@@ -1,6 +1,7 @@
 import { useLanguage } from "../../../../contexts/LanguageContext";
 import { Navbar } from "../../../../components/Navbar";
 import { MobileAppBanner } from "../../../../components/MobileAppBanner";
+import { Pizza, Gift, ShoppingBasket, Utensils, GlassWater, Flower2 } from "lucide-react";
 import bgHeroSection from "../../../../assets/BgHero.jpeg";
 
 export const HeroSection = (): JSX.Element => {
@@ -10,7 +11,33 @@ export const HeroSection = (): JSX.Element => {
     <section
       style={{ backgroundImage: `url(${bgHeroSection})` }}
       className="relative w-full min-h-screen
-    bg-cover bg-right overflow-hidden md:py-28 lg:py-36 py-16">
+      bg-cover bg-right overflow-hidden md:py-28 lg:py-36 py-16">
+      <div className="absolute inset-0 z-0 opacity-10 pointer-events-none overflow-hidden">
+        <div className="absolute top-[10%] left-[5%] -rotate-12">
+          <Pizza className="w-24 h-24 lg:w-32 lg:h-32 text-black" />
+        </div>
+        <div className="absolute top-[25%] left-[15%] rotate-12">
+          <Utensils className="w-20 h-20 lg:w-28 lg:h-28 text-black" />
+        </div>
+
+        <div className="absolute bottom-[20%] left-[8%] rotate-45">
+          <Gift className="w-24 h-24 lg:w-32 lg:h-32 text-black" />
+        </div>
+
+        <div className="absolute top-[20%] right-[10%] -rotate-12">
+          <ShoppingBasket className="w-24 h-24 lg:w-32 lg:h-32 text-black" />
+        </div>
+        <div className="absolute top-[50%] right-[5%] rotate-12">
+          <Flower2 className="w-24 h-24 lg:w-32 lg:h-32 text-black" />
+        </div>
+
+        <div className="absolute bottom-[10%] right-[15%] -rotate-45">
+          <GlassWater className="w-16 h-16 lg:w-24 lg:h-24 text-black" />
+        </div>
+
+        <div className="absolute -left-20 top-1/2 -translate-y-1/2 w-64 h-64 border-8 border-black/20 rounded-full" />
+        <div className="absolute -right-20 top-1/4 w-48 h-48 border-4 border-black/20 rounded-full" />
+      </div>
 
       <MobileAppBanner />
       <Navbar />

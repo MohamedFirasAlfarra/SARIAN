@@ -4,9 +4,9 @@ import { useLanguage } from "../../../../contexts/LanguageContext";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube, FaSnapchat, FaTiktok } from "react-icons/fa";
 import { Globe, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
-import logopng from '../../../../assets/logo.png' ;
-import appstore from '../../../../assets/appstore.png' ;
-import googleplay from '../../../../assets/googleplay.png' ;
+import logopng from '../../../../assets/logo.png';
+import appstore from '../../../../assets/appstore.png';
+import googleplay from '../../../../assets/googleplay.png';
 
 export const FooterSection = (): JSX.Element => {
   const { t, language, setLanguage } = useLanguage();
@@ -72,15 +72,19 @@ export const FooterSection = (): JSX.Element => {
 
 
   return (
-    <footer className="relative w-full overflow-hidden pt-16 pb-10">
+    <footer className="relative w-full overflow-hidden pt-16 pb-10 mt-[-8vw] md:mt-0">
       <div
         className="absolute inset-0 bg-[#333333] z-0"
-        style={{ clipPath: 'polygon(0 4%, 100% 0, 100% 100%, 0 100%)' }} />
+        style={{
+          clipPath: "window" in globalThis && window.innerWidth < 768
+            ? 'polygon(0 0, 100% 8vw, 100% 100%, 0 100%)'
+            : 'polygon(0 4%, 100% 0, 100% 100%, 0 100%)'
+        }} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col lg:hidden gap-8 items-center w-full mb-10">          
-            <img src={logopng}
-             alt="Logo" className="w-40 h-3w-40 rounded-xl  object-contain invert-[.1]" />
+        <div className="flex flex-col lg:hidden gap-8 items-center w-full mb-10">
+          <img src={logopng}
+            alt="Logo" className="w-40 h-3w-40 rounded-xl  object-contain invert-[.1]" />
           <Separator className="bg-white" />
 
           <div className="w-full flex flex-col">
@@ -106,28 +110,28 @@ export const FooterSection = (): JSX.Element => {
 
           <div className="flex flex-row gap-4 mt-4">
             <button className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-xl border border-white/20 hover:bg-black/80 transition-all">
-              <img  src={appstore} alt="App Store" className="w-28 h-15" />
-            
+              <img src={appstore} alt="App Store" className="w-28 h-15" />
+
             </button>
             <button className="flex items-center gap-2 bg-black text-white px-4 py-2 rounded-xl border border-white/20 hover:bg-black/80 transition-all">
               <img src={googleplay} alt="Google Play" className="w-28 h-15" />
-            
+
             </button>
           </div>
         </div>
 
         <div className={`hidden lg:flex flex-col lg:flex-row gap-12 lg:gap-8 justify-between ${language === 'ar' ? 'lg:flex-row' : ''}`}>
-          <div className={`flex flex-col items-center lg:items-end gap-6 w-full lg:w-1/4 ${language === 'ar' ? 'lg:items-start' : 'lg:items-start'}`}>        
-              <img src={logopng} alt="Logo" className="w-40 h-3w-40 rounded-xl  object-contain invert-[.1]" />
+          <div className={`flex flex-col items-center lg:items-end gap-6 w-full lg:w-1/4 ${language === 'ar' ? 'lg:items-start' : 'lg:items-start'}`}>
+            <img src={logopng} alt="Logo" className="w-40 h-3w-40 rounded-xl  object-contain invert-[.1]" />
             <div className="flex flex-col gap-3">
               <button className="flex items-center gap-3 bg-black text-white px-4 py-2 rounded-xl border border-white/20 hover:bg-black/80 transition-all w-[160px]">
-                  <img  src={appstore} alt="App Store" className="w-36 h-15" />
+                <img src={appstore} alt="App Store" className="w-36 h-15" />
               </button>
               <button className="flex items-center gap-3 bg-black text-white px-4 py-2 rounded-xl border border-white/20 hover:bg-black/80 transition-all w-[160px]">
-              <img src={googleplay} alt="Google Play" className="w-36 h-15" />
+                <img src={googleplay} alt="Google Play" className="w-36 h-15" />
               </button>
             </div>
-          </div>  
+          </div>
 
           <div className="flex-1">
             <div className={`grid grid-cols-4 gap-8 ${language === 'ar' ? 'text-right' : 'text-left'}`}>

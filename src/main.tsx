@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Sarian } from "./screens/Sarian";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { BecomePartner } from "./routes/BecomePartner/BecomePartner";
+import { BecomeDriver } from "./routes/BecomeDriver/BecomeDriver";
 
 createRoot(document.getElementById("app") as HTMLElement).render(
   <StrictMode>
@@ -12,6 +13,7 @@ createRoot(document.getElementById("app") as HTMLElement).render(
         <Routes>
           <Route path="/" element={<Sarian />} />
           <Route path="/partner" element={<BecomePartner />} />
+          <Route path="/become-driver" element={<BecomeDriver />} />
         </Routes>
       </BrowserRouter>
     </LanguageProvider>

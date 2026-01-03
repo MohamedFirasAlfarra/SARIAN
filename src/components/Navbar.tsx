@@ -1,6 +1,6 @@
 import { Button } from "./ui/button";
 import { useLanguage } from "../contexts/LanguageContext";
-import { Search, Globe, Car, Building2, Menu, X, Facebook, Youtube, Instagram, Linkedin, MessageCircle } from "lucide-react";
+import { Globe, Car, Building2, Menu, X, Facebook, Youtube, Instagram, Linkedin, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -11,7 +11,7 @@ export const Navbar = (): JSX.Element => {
     const navLinks = [
         { text: t('nav.services'), href: "#", isExternal: false },
         { text: t('nav.cities'), href: "https://done.ma/#section-cities", isExternal: true },
-        { text: t('nav.driver'), href: "#", isExternal: false },
+        { text: t('nav.driver'), href: "/become-driver", isExternal: false },
         { text: t('nav.partner'), href: "/partner", isExternal: false },
         { text: t('nav.faq'), href: "#", isExternal: false },
     ];
@@ -93,15 +93,17 @@ export const Navbar = (): JSX.Element => {
 
                     {/* Desktop Actions */}
                     <div className="hidden lg:flex items-center gap-3">
-                        <Button
-                            variant="default"
-                            className="bg-[#FFE55C] hover:bg-[#ffe55c]/80 text-[#0d1b42] border border-[#0d1b42]/10 rounded-[10px] px-3 gap-2 h-[45px] shadow-sm transition-all duration-300 hover:scale-[1.02]"
-                        >
-                            <Car className="w-5 h-5" />
-                            <span className={`font-semibold text-sm ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
-                                {t('nav.deliveryDriver')}
-                            </span>
-                        </Button>
+                        <Link to="/become-driver">
+                            <Button
+                                variant="default"
+                                className="bg-[#FFE55C] hover:bg-[#ffe55c]/80 text-[#0d1b42] border border-[#0d1b42]/10 rounded-[10px] px-3 gap-2 h-[45px] shadow-sm transition-all duration-300 hover:scale-[1.02]"
+                            >
+                                <Car className="w-5 h-5" />
+                                <span className={`font-semibold text-sm ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
+                                    {t('nav.deliveryDriver')}
+                                </span>
+                            </Button>
+                        </Link>
 
                         <Link to="/partner">
                             <Button
@@ -176,15 +178,17 @@ export const Navbar = (): JSX.Element => {
                     })}
 
                     <div className="flex flex-row gap-4 w-full mt-4">
-                        <Button
-                            variant="default"
-                            className="flex-1 bg-[#FFE55C] hover:bg-[#ffe55c]/90 text-[#0d1b42] border border-[#0d1b42]/10 rounded-xl py-4 text-sm lg:text-lg gap-2 shadow-sm justify-center px-2 transition-transform active:scale-95 group hover:scale-[1.02] duration-300"
-                        >
-                            <Car className="w-5 h-5 lg:w-6 lg:h-6 group-hover:scale-110 transition-transform duration-300" />
-                            <span className={`font-semibold ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
-                                {t('nav.deliveryDriver')}
-                            </span>
-                        </Button>
+                        <Link to="/become-driver" className="flex-1" onClick={() => setIsMobileMenuOpen(false)}>
+                            <Button
+                                variant="default"
+                                className="w-full bg-[#FFE55C] hover:bg-[#ffe55c]/90 text-[#0d1b42] border border-[#0d1b42]/10 rounded-xl py-4 text-sm lg:text-lg gap-2 shadow-sm justify-center px-2 transition-transform active:scale-95 group hover:scale-[1.02] duration-300"
+                            >
+                                <Car className="w-5 h-5 lg:w-6 lg:h-6 group-hover:scale-110 transition-transform duration-300" />
+                                <span className={`font-semibold ${language === 'ar' ? '[direction:rtl]' : '[direction:ltr]'}`}>
+                                    {t('nav.deliveryDriver')}
+                                </span>
+                            </Button>
+                        </Link>
 
                         <Link to="/partner" className="flex-1" onClick={() => setIsMobileMenuOpen(false)}>
                             <Button

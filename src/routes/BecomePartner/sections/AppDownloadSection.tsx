@@ -1,14 +1,28 @@
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Download } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export const AppDownloadSection = (): JSX.Element => {
     const { language } = useLanguage();
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     return (
-        <section className="relative w-full mt-0 mb-10 md:my-20 pb-10 md:pb-0 flex justify-center px-0 md:px-10">
+        <section className="relative w-full mt-0 mb-0 md:my-20 pb-0 flex justify-center px-0 md:px-10">
             <div
-                className={`relative w-full max-w-6xl bg-[#FFD400] overflow-hidden flex flex-col lg:items-center ${language === 'ar' ? 'lg:flex-row' : 'lg:flex-row-reverse'} shadow-none md:shadow-[0_10px_40px_rgba(0,0,0,0.15)] md:rounded-[30px] min-h-[500px] transition-all duration-300`}>
+                className={`relative w-full max-w-6xl bg-[#FFD400] overflow-hidden flex flex-col lg:items-center ${language === 'ar' ? 'lg:flex-row' : 'lg:flex-row-reverse'} shadow-none md:shadow-[0_10px_40px_rgba(0,0,0,0.15)] md:rounded-[30px] min-h-[550px] md:min-h-[500px] transition-all duration-300`}
+                style={{
+                    clipPath: isMobile
+                        ? "polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 8vw))"
+                        : "none"
+                }}>
                 <div className="absolute inset-0 opacity-20 pointer-events-none select-none">
                     <img
                         src="https://c.animaapp.com/mjtprqtwg1cmix/img/vector-2.svg"
@@ -46,7 +60,7 @@ export const AppDownloadSection = (): JSX.Element => {
                     </Button>
                 </div>
 
-                <div className="relative flex-shrink-0 w-full lg:w-1/2 min-h-[350px] md:min-h-[400px] flex items-center justify-center p-8 overflow-visible">
+                <div className="relative flex-shrink-0 w-full lg:w-1/2 min-h-[350px] md:min-h-[400px] flex items-center justify-center p-8 overflow-visible pb-16 md:pb-8">
                     <div className="absolute w-[280px] md:w-[450px] h-[280px] md:h-[450px] bg-white/30 rounded-full scale-110 lg:scale-[1.15]" />
 
                     <img

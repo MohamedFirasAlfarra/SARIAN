@@ -134,9 +134,9 @@ export const RegistrationFormSection = (): JSX.Element => {
               <div className="md:col-span-2 pt-4">
                 <Button
                   type="submit"
-                  className="h-10 w-full bg-[#FFD400] hover:bg-[#FFD400]/90 rounded-xl shadow-lg transition-all transform active:scale-95"
+                  className="h-12 w-full bg-[#FFD400] hover:bg-[#FFD400]/90 rounded-xl shadow-lg transition-all transform active:scale-95"
                 >
-                  <span className="text-white text-md font-semibold">
+                  <span className="text-white text-xl font-semibold">
                     {language === 'ar' ? 'أرسل الآن' : 'Sstart Now'}
                   </span>
                 </Button>
