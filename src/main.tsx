@@ -5,11 +5,13 @@ import { Sarian } from "./screens/Sarian";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { BecomePartner } from "./routes/BecomePartner/BecomePartner";
 import { BecomeDriver } from "./routes/BecomeDriver/BecomeDriver";
+import ScrollToHash from "./components/ScrollToHash";
 
 createRoot(document.getElementById("app") as HTMLElement).render(
   <StrictMode>
     <LanguageProvider>
       <BrowserRouter basename="/SARIAN">
+        <ScrollToHash />
         <Routes>
           <Route path="/" element={<Sarian />} />
           <Route path="/partner" element={<BecomePartner />} />

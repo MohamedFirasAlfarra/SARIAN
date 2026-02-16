@@ -1,54 +1,5 @@
 import { useLanguage } from "../../../contexts/LanguageContext";
 import { Button } from "../../../components/ui/button";
-
-// export const DriverHeroSection = () => {
-
-//     const { t, language } = useLanguage();
-
-//     return (
-//         <section className="relative w-full pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
-//             <div
-//                 className="absolute inset-0 bg-[#FFD400] z-0"
-//                 style={{
-//                     clipPath: language === 'ar'
-//                         ? 'polygon(0 0, 100% 0, 100% 85%, 0 100%)'
-//                         : 'polygon(0 0, 100% 0, 100% 100%, 0 85%)'
-//                 }}
-//             />
-
-//             <div className="container mx-auto px-4 md:px-8 lg:px-20 relative z-10">
-//                 <div className={`flex flex-col lg:flex-row items-center gap-10 lg:gap-20 ${language === 'ar' ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
-//                     <div className={`w-full lg:w-1/2 flex flex-col gap-6 ${language === 'ar' ? 'text-right items-start' : 'text-left items-end'}`}>
-//                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#0d1b42] [font-family: Georgia, 'Times New Roman', Times, serif] leading-tight">
-//                             {t('driver.hero.title')}
-//                         </h1>
-//                         <p className="text-lg md:text-xl text-[#0d1b42]/80 max-w-xl font-medium">
-//                             {t('driver.hero.desc')}
-//                         </p>
-//                         <Button
-//                             className="bg-[#0d1b42] hover:bg-[#0d1b42]/90 text-[#FFD400] px-10 py-6 text-xl rounded-xl transition-all duration-300 hover:scale-105 shadow-xl"
-//                             onClick={() => document.getElementById('registration-form')?.scrollIntoView({ behavior: 'smooth' })}
-//                         >
-//                             {t('driver.hero.btn')}
-//                         </Button>
-//                     </div>
-
-//                     <div className="w-full lg:w-1/2 relative">
-//                         <div className="relative aspect-video lg:aspect-square bg-white/20 rounded-[40px] backdrop-blur-sm border-2 border-white/30 overflow-hidden shadow-2xl flex items-center justify-center group">
-//                             <img
-//                                 src="https://c.animaapp.com/mj5q34e29K0n2Q/img/image-1.png"
-//                                 alt="Driver App"
-//                                 className="w-full h-full object-contain p-8 transition-transform duration-500 group-hover:scale-110"
-//                             />
-//                             <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#FFD400]/20 rounded-full blur-3xl" />
-//                             <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-white/20 rounded-full blur-3xl" />
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-//         </section>
-//     );
-// };
 export const DriverHeroSection = (): JSX.Element => {
   const { t, language } = useLanguage();
 

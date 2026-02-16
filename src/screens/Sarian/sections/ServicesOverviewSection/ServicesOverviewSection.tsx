@@ -5,7 +5,7 @@ export const ServicesOverviewSection = (): JSX.Element => {
   const { t, language } = useLanguage();
 
   return (
-    <section className="relative w-full min-h-[500px] md:min-h-[500px] 
+    <section id="cities-section" className="relative w-full min-h-[500px] md:min-h-[500px] 
     lg:min-h-screen py-14">
       {/* CSS Background instead of SVG */}
       <div

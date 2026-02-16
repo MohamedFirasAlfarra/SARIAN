@@ -63,7 +63,7 @@ export const MainContentSection = (): JSX.Element => {
   ];
 
   return (
-    <section className="w-full py-12 md:py-14 lg:py-16 px-4 md:px-8 lg:px-16">
+    <section id="services-section" className="w-full py-12 md:py-14 lg:py-16 px-4 md:px-8 lg:px-16">
       <div className="max-w-[1440px] mx-auto relative group/section">
         <header className="flex items-center justify-center mb-12 md:mb-14 lg:mb-16 translate-y-[-1rem] animate-fade-in opacity-0">
           <h2 className={`font-bold text-black text-2xl md:text-3xl lg:text-[40px] text-center

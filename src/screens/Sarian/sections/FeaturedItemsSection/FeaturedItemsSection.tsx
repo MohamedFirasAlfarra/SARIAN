@@ -27,7 +27,7 @@ export const FeaturedItemsSection = (): JSX.Element => {
   ];
 
   return (
-    <section className="relative flex justify-center overflow-hidden
+    <section id="faq-section" className="relative flex justify-center overflow-hidden
     w-full min-h-[500px] md:min-h-[500px] 
     lg:min-h-screen">
       <div

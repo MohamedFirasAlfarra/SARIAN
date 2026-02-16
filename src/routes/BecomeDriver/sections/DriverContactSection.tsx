@@ -8,7 +8,6 @@ export const DriverContactSection = () => {
         <section className="w-full py-16 bg-white">
             <div className="container mx-auto px-4 md:px-8 lg:px-20">
                 <div className="flex flex-col md:flex-row gap-6 max-w-4xl mx-auto">
-                    {/* Email Contact */}
                     <div className={`flex-1 flex items-center gap-6 p-8 rounded-3xl bg-gray-50 border border-gray-100 hover:border-[#FFD400] transition-colors group ${language === 'ar' ? 'flex-row' : 'flex-row-reverse'}`}>
                         <div className="p-4 bg-white rounded-2xl shadow-sm text-[#0d1b42] group-hover:bg-[#FFD400] transition-colors">
                             <Mail className="w-8 h-8" />
@@ -19,7 +18,6 @@ export const DriverContactSection = () => {
                         </div>
                     </div>
 
-                    {/* App Support Contact */}
                     <div className={`flex-1 flex items-center gap-6 p-8 rounded-3xl bg-gray-50 border border-gray-100 hover:border-[#FFD400] transition-colors group ${language === 'ar' ? 'flex-row' : 'flex-row-reverse'}`}>
                         <div className="p-4 bg-white rounded-2xl shadow-sm text-[#0d1b42] group-hover:bg-[#FFD400] transition-colors">
                             <MessageSquare className="w-8 h-8" />

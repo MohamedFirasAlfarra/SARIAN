@@ -9,18 +9,17 @@ export const Navbar = (): JSX.Element => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const navLinks = [
-        { text: t('nav.services'), href: "#", isExternal: false },
-        { text: t('nav.cities'), href: "https://done.ma/#section-cities", isExternal: true },
+        { text: t('nav.services'), href: "/#services-section", isExternal: false },
+        { text: t('nav.cities'), href: "/#cities-section", isExternal: false },
         { text: t('nav.driver'), href: "/become-driver", isExternal: false },
         { text: t('nav.partner'), href: "/partner", isExternal: false },
-        { text: t('nav.faq'), href: "#", isExternal: false },
+        { text: t('nav.faq'), href: "/#faq-section", isExternal: false },
     ];
 
     return (
         <>
             <nav className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 md:px-8 lg:px-20 py-4 w-full transition-all duration-300 ${isMobileMenuOpen ? 'bg-[#FFD400]' : 'bg-[#FFD400]/95 backdrop-blur-sm'} shadow-sm`}>
 
-                {/* Logo Section (Start) */}
                 <Link to="/" className="flex items-center">
                     <img
                         className="h-14 lg:h-14 w-auto object-contain"
@@ -72,9 +71,7 @@ export const Navbar = (): JSX.Element => {
                     })}
                 </div>
 
-                {/* Actions Section (End): Buttons & Icons */}
                 <div className="flex items-center gap-3 lg:gap-4">
-                    {/* Mobile Language Toggle */}
                     <Button
                         variant="ghost"
                         className="lg:hidden text-lg font-bold"
@@ -83,7 +80,6 @@ export const Navbar = (): JSX.Element => {
                         <Globe className="w-5 h-5" />
                     </Button>
 
-                    {/* Mobile Menu Icon */}
                     <button
                         className="lg:hidden p-2 text-[#0d1b42] hover:bg-black/5 rounded-full transition-colors"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -91,7 +87,6 @@ export const Navbar = (): JSX.Element => {
                         {isMobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
                     </button>
 
-                    {/* Desktop Actions */}
                     <div className="hidden lg:flex items-center gap-3">
                         <Link to="/become-driver">
                             <Button
@@ -119,10 +114,6 @@ export const Navbar = (): JSX.Element => {
 
                         <div className="w-px h-8 bg-[#0d1b42]/10 mx-1" />
 
-                        {/* <button className="p-2 hover:bg-black/5 rounded-full transition-colors hover:scale-110 duration-300">
-                            <Search className="w-5 h-5 text-[#0d1b42]" />
-                        </button> */}
-
                         <button
                             className="p-2 hover:bg-black/5 rounded-full transition-colors hover:scale-110 duration-300"
                             onClick={() => setLanguage(language === 'ar' ? 'en' : 'ar')}
@@ -133,7 +124,6 @@ export const Navbar = (): JSX.Element => {
                 </div>
             </nav>
 
-            {/* Mobile Menu Overlay */}
             <div
                 className={`fixed inset-0 z-40 bg-white/95 backdrop-blur-md transition-all duration-500 cubic-bezier(0.4, 0, 0.2, 1) lg:hidden flex flex-col pt-28 px-6 overflow-y-auto shadow-2xl ${isMobileMenuOpen ? "translate-x-0 opacity-100" : (language === 'ar' ? "translate-x-full opacity-0" : "-translate-x-full opacity-0")
                     }`}
@@ -203,27 +193,22 @@ export const Navbar = (): JSX.Element => {
                         </Link>
                     </div>
                     <div className="flex items-center gap-4 mt-auto w-full justify-center border-t border-gray-100 pt-8 pb-8">
-                        {/* Facebook - Blue */}
                         <a href="#" className="group p-3 bg-gray-50 rounded-full hover:bg-blue-50 transition-all duration-300 hover:scale-110 hover:shadow-lg">
                             <Facebook className="w-7 h-7 text-gray-600 group-hover:text-[#1877F2] transition-colors" />
                         </a>
 
-                        {/* YouTube - Red */}
                         <a href="#" className="group p-3 bg-gray-50 rounded-full hover:bg-red-50 transition-all duration-300 hover:scale-110 hover:shadow-lg">
                             <Youtube className="w-7 h-7 text-gray-600 group-hover:text-[#FF0000] transition-colors" />
                         </a>
 
-                        {/* Instagram - Pink/Purple Gradient Text Effect via class usually, but simple text color for SVG */}
                         <a href="#" className="group p-3 bg-gray-50 rounded-full hover:bg-pink-50 transition-all duration-300 hover:scale-110 hover:shadow-lg">
                             <Instagram className="w-7 h-7 text-gray-600 group-hover:text-[#E4405F] transition-colors" />
                         </a>
 
-                        {/* LinkedIn - Blue */}
                         <a href="#" className="group p-3 bg-gray-50 rounded-full hover:bg-blue-50 transition-all duration-300 hover:scale-110 hover:shadow-lg">
                             <Linkedin className="w-7 h-7 text-gray-600 group-hover:text-[#0A66C2] transition-colors" />
                         </a>
 
-                        {/* WhatsApp - Green */}
                         <a href="#" className="group p-3 bg-gray-50 rounded-full hover:bg-green-50 transition-all duration-300 hover:scale-110 hover:shadow-lg">
                             <MessageCircle className="w-7 h-7 text-gray-600 group-hover:text-[#25D366] transition-colors" />
                         </a>

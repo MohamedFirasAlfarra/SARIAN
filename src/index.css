@@ -72,7 +72,7 @@
     @apply bg-background text-foreground font-ibm;
     font-feature-settings: "rlig" 1, "calt" 1;
     font-family: Georgia, 'Times New Roman', Times, serif;
-
+    scroll-behavior: smooth;
   }
 
   html[dir="rtl"] {

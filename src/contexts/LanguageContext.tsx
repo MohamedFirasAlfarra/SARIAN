@@ -10,7 +10,6 @@ interface LanguageContextType {
 
 const translations = {
   ar: {
-    // Navbar
     'nav.services': 'خدماتنا',
     'nav.cities': 'المدن التي نخدمها',
     'nav.driver': 'كن سائقا',
@@ -18,13 +17,11 @@ const translations = {
     'nav.faq': 'الاسئلة الشائعة',
     'nav.deliveryDriver': 'كن مندوب توصيل',
 
-    // Hero Section
     'hero.title': 'كل خدماتك اليومية...',
     'hero.subtitle': 'في تطبيق واحد',
     'hero.description1': 'هو أول تطبيق مغربي شامل يلبي كل احتياجاتك،',
     'hero.description2': 'من الطعام إلى التسوق. بضغطة زر، يصلك كل شيء بسرعة، احترافية.',
 
-    // Services Section
     'services.title': 'خدمات متنوعة، تطبيق واحد',
     'services.flowers.title': 'أرسل الورود',
     'services.flowers.desc': 'اختر من بين أجمل باقات الورود وأرسل معها مشاعرك بطريقتك الخاصة.',
@@ -45,11 +42,9 @@ const translations = {
     'services.gift.desc': 'اختر من بين خياراتنا المميزة وأرسلها مع رسالة خاصة تجعل يومهم أكثر جمالا.',
     'services.gift.btn': 'اطلب الان',
 
-    // Coverage Section
     'coverage.title': 'نصل إليك في كل مكان!',
     'coverage.desc': 'متواجدون في جميع المدن السورية، من العاصمة دمشق إلى جميع المحافظات السورية وأكثر!',
 
-    // Partnership Section
     'partnership.title': 'فرصتك للنجاح والإستقلال المادي تبدأ هنا!',
     'partnership.desc': 'سواء كنت صاحب مشروع تطمح لتوسيع نجاحك أو تبحث عن عمل مرن يحقق لك دخلا مضمونا، نحن هنا لدعمك خطوة بخطوة!',
     'partnership.driver.title': 'كن مندوب توصيل',
@@ -69,7 +64,6 @@ const translations = {
     'featured.title': 'فرصتك للنجاح والإستقلال المادي تبدأ هنا!',
     'featured.desc': 'سواء كنت صاحب مشروع تطمح لتوسيع نجاحك أو تبحث عن عمل مرن يحقق لك دخلاً مضمونًا، نحن هنا لدعمك خطوة بخطوة!',
 
-    // FAQ Section
     'faq.title': 'أسئلة متكررة',
     'faq.subtitle': 'لديك سؤال؟ إستفسار؟ شيء ما يشغل بالك',
     'faq.question': 'ما هو تطبيق SARIAN؟',
@@ -97,7 +91,6 @@ const translations = {
     'faq.a9': 'يمكنك توسيع نطاق عملك، الوصول إلى المزيد من العملاء، والاستفادة من خدمات الدفع الإلكتروني والتسويق.',
     'faq.a10': 'إذا كنت تمتلك مطعما أو متجرا، يمكنك التسجيل عبر الموقع الإلكتروني أو التطبيق، وسيقوم فريقنا بالتواصل معك لتفعيل حسابك.',
 
-    // Footer
     'footer.cities': 'المدن',
     'footer.cities.rabat': 'دمشق',
     'footer.cities.casablanca': 'حلب',
@@ -134,21 +127,19 @@ const translations = {
     'footer.links.review': 'تقييم تطبيق SARIAN؟',
     'footer.links.press': 'الصحافة',
     'footer.links.cookies': 'سياسة ملفات تعريف الارتباط',
-    'footer.links.security': 'سياسة ثيود الصبر', // Matching image text "ثيود الصبر" or similar? Wait, image says something like "سياسة قيود السر" or "ثيود الصبر". I'll try to match best.
+    'footer.links.security': 'سياسة ثيود الصبر', 
     'footer.aboutUs': 'من نحن؟',
     'footer.contact': 'تواصل معنا',
     'footer.howItWorks': 'كيف يعمل تطبيق SARIAN؟',
     'footer.rights': 'جميع الحقوق محفوظة لدى SARIAN.ma 2025 ©',
     'footer.language': 'العربية',
 
-    // Partner Page
     'partner.title': 'انضم كشريك في SARIAN',
     'partner.description': 'هل تمتلك مطعما، متجرا، أو مشروعا صغيرا؟ تطبيق SARIAN هو بوابتك للوصول إلى آلاف العملاء الجدد وزيادة مبيعاتك بسهولة!',
     'partner.joinUs': 'انضم الينا',
     'partner.form.title': 'نموذج التسجيل الأولي',
     'partner.form.description': 'هل ترغب في عرض منتجاتك على تطبيق SARIAN؟ املأ النموذج التالي وسنتواصل معك لتفعيل حسابك:',
 
-    // Become Driver Page
     'driver.hero.title': 'كن مندوب توصيل - SARIAN',
     'driver.hero.desc': 'حقق دخلك الخاص واختر ساعات العمل التي تناسبك. انضم إلى فريق ساريان الآن!',
     'driver.hero.btn': 'اشترك الآن',
@@ -180,7 +171,6 @@ const translations = {
     'driver.contact.app': 'تواصل معنا عبر الدعم داخل التطبيق',
   },
   en: {
-    // Navbar
     'nav.services': 'Our Services',
     'nav.cities': 'Cities We Serve',
     'nav.driver': 'Become a Driver',
@@ -188,13 +178,11 @@ const translations = {
     'nav.faq': 'FAQ',
     'nav.deliveryDriver': 'Become a Delivery Driver',
 
-    // Hero Section
     'hero.title': 'All Your Daily Services...',
     'hero.subtitle': 'In One App',
     'hero.description1': 'The first comprehensive Moroccan app that meets all your needs,',
     'hero.description2': 'from food to shopping. With one click, everything arrives quickly and professionally.',
 
-    // Services Section
     'services.title': 'Diverse Services, One App',
     'services.flowers.title': 'Send Flowers',
     'services.flowers.desc': 'Choose from the most beautiful flower bouquets and send your feelings in your own way.',
@@ -215,11 +203,9 @@ const translations = {
     'services.gift.desc': 'Choose from our distinctive options and send it with a special message to make their day more beautiful.',
     'services.gift.btn': 'Order Now',
 
-    // Coverage Section
     'coverage.title': 'We Reach You Everywhere!',
     'coverage.desc': 'Present in all Syrian cities, from the capital Damascus to all Syrian governorates and more!',
 
-    // Partnership Section
     'partnership.title': 'Your Opportunity for Success and Financial Independence Starts Here!',
     'partnership.desc': 'Whether you are a business owner aspiring to expand your success or looking for flexible work that provides you with guaranteed income, we are here to support you step by step!',
     'partnership.driver.title': 'Become a Delivery Driver',
@@ -238,7 +224,6 @@ const translations = {
     'featured.title': 'Your opportunity for success and financial independence starts here!',
     'featured.desc': 'Whether you are a business owner aspiring to expand your success or looking for flexible work that provides a guaranteed income, we are here to support you every step of the way!',
 
-    // FAQ Section
     'faq.title': 'Frequently Asked Questions',
     'faq.subtitle': 'Have a question? Inquiry? Something on your mind',
     'faq.question': 'What is the SARIAN app?',
@@ -266,7 +251,6 @@ const translations = {
     'faq.a9': 'You can expand your business, reach more customers, and benefit from electronic payment and marketing services.',
     'faq.a10': 'If you own a restaurant or store, you can register through the website or app, and our team will contact you to activate your account.',
 
-    // Footer
     'footer.cities': 'Cities',
     'footer.cities.rabat': 'Damascus',
     'footer.cities.casablanca': 'Aleppo',
@@ -310,14 +294,12 @@ const translations = {
     'footer.rights': 'All Rights Reserved to SARIAN.ma 2025 ©',
     'footer.language': 'English',
 
-    // Partner Page
     'partner.title': 'Join as a Partner in SARIAN',
     'partner.description': 'Do you own a restaurant, store, or small business? SARIAN app is your gateway to reach thousands of new customers and increase your sales easily!',
     'partner.joinUs': 'Join Us',
     'partner.form.title': 'Initial Registration Form',
     'partner.form.description': 'Would you like to showcase your products on SARIAN app? Fill out the form below and we will contact you to activate your account:',
 
-    // Become Driver Page
     'driver.hero.title': 'Become a Delivery Driver - SARIAN',
     'driver.hero.desc': 'Achieve your own income and choose the working hours that suit you. Join the Sarian team now!',
     'driver.hero.btn': 'Join Now',
